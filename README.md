@@ -1,25 +1,3 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# fig-V0.1
+[![Codeship Status for JayCammarano/fig-V0.1](https://app.codeship.com/projects/ed870570-b0e4-0138-5d63-72bb0984d6ea/status?branch=master)](https://app.codeship.com/projects/403961)
