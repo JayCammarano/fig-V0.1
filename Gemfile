@@ -53,3 +53,4 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'webpacker', '~> 3.3'
 gem "carrierwave"
+gem "bulma-rails", "~> 0.9.0"

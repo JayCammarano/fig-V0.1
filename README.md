@@ -8,4 +8,4 @@
 - gem 'devise_token_auth'
 - gem 'omniauth'
 - gem "carrierwave"
-
+- gem "bulma-rails", "~> 0.9.0"
