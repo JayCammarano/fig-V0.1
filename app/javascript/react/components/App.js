@@ -1,7 +1,17 @@
-import React from 'react'
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import NavBar from "./global/navbar/NavBarContainer";
 
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
-}
+  return (
+    <div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={NavBar} />
+      </Switch>
+    </BrowserRouter>
+    </div>
+  );
+};
 
-export default App
+export default App;
