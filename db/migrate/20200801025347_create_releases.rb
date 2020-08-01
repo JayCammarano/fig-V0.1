@@ -7,7 +7,7 @@ class CreateReleases < ActiveRecord::Migration[5.2]
       t.integer :original_release_year
       t.belongs_to :artist, null: false
       t.belongs_to :label
-      t.belongs_to :tag, null: false
+      t.belongs_to :tag
       t.timestamps
     end
   end
