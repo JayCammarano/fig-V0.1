@@ -4,7 +4,16 @@
 
 ## Dependencies and Setup
 
-## Additional Gems
+## Additional Gems and Yarn Packages
+
+Gems:
 
 - gem 'devise_token_auth'
 - gem 'omniauth'
+- gem "carrierwave"
+- gem "bulma-rails", "~> 0.9.0"
+
+Packages:
+
+- `yarn add node-sass`
+- `yarn add bulma`

@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_08_01_134359) do
+=======
+ActiveRecord::Schema.define(version: 0) do
+>>>>>>> a5e4a555cdb270419a78296d7eefebbc0a71bfbf
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
   create_table "artists", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -71,4 +76,6 @@ ActiveRecord::Schema.define(version: 2020_08_01_134359) do
     t.index ["release_id"], name: "index_tags_on_release_id"
   end
 
+=======
+>>>>>>> a5e4a555cdb270419a78296d7eefebbc0a71bfbf
 end
