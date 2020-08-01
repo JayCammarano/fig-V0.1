@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-artist1 = Artist.create(name: "Manilla Road", description: "Hevay metal band from a country that looks like a country", alias: ["Manilla Road", "Other Name"])
+artist1 = Artist.create(name: "Manilla Road", description: "Heavy metal band from a country that looks like a country", alias: ["Manilla Road", "Other Name"])
 tag1 = Tag.create(tag: "heavy-metal")
-release1 = Release.create(release_type: "EP", title: "A Cool Tune", description: "Wow. I love this record. So Cool! Here is its history!", artist: artist1, original_release_year: 1997, tags: tag1)
-label1 = Label.create(name: "Polyvinyl", description: "A Label with of Montreal on it", release: release1)
+release1 = Release.create(release_type: "EP", title: "A Cool Tune", description: "Wow. I love this record. So Cool! Here is its history!", artist_id: 1, original_release_year: 1997, tag_id: 1, label_id: 1)
+label1 = Label.create(name: "Polyvinyl", description: "A Label with of Montreal on it", release_id: 1)
