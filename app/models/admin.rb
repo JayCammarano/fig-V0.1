@@ -5,6 +5,6 @@ class Admin < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   extend Devise::Models
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+    :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 end
