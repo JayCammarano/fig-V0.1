@@ -24,29 +24,33 @@ ActiveRecord::Schema.define(version: 2020_08_01_134359) do
   end
 
   create_table "artists_releases", id: false, force: :cascade do |t|
-    t.integer "artist_id"
-    t.integer "release_id"
+    t.bigint "artist_id"
+    t.bigint "release_id"
+    t.index ["artist_id"], name: "index_artists_releases_on_artist_id"
+    t.index ["release_id"], name: "index_artists_releases_on_release_id"
   end
 
   create_table "labels", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.bigint "release_id", null: false
+    t.bigint "release_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["release_id"], name: "index_labels_on_release_id"
   end
 
   create_table "labels_releases", id: false, force: :cascade do |t|
-    t.integer "label_id"
-    t.integer "release_id"
+    t.bigint "label_id"
+    t.bigint "release_id"
+    t.index ["label_id"], name: "index_labels_releases_on_label_id"
+    t.index ["release_id"], name: "index_labels_releases_on_release_id"
   end
 
   create_table "releases", force: :cascade do |t|
     t.string "release_type", null: false
     t.string "embed_url"
     t.text "title", null: false
-    t.integer "original_release_year", null: false
+    t.integer "original_release_year"
     t.bigint "artist_id", null: false
     t.bigint "label_id"
     t.bigint "tag_id", null: false
@@ -59,8 +63,10 @@ ActiveRecord::Schema.define(version: 2020_08_01_134359) do
   end
 
   create_table "releases_tags", id: false, force: :cascade do |t|
-    t.integer "release_id"
-    t.integer "tag_id"
+    t.bigint "release_id"
+    t.bigint "tag_id"
+    t.index ["release_id"], name: "index_releases_tags_on_release_id"
+    t.index ["tag_id"], name: "index_releases_tags_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
