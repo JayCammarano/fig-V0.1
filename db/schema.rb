@@ -49,13 +49,13 @@ ActiveRecord::Schema.define(version: 2020_08_01_134359) do
     t.integer "original_release_year", null: false
     t.bigint "artist_id", null: false
     t.bigint "label_id"
-    t.bigint "tags_id", null: false
+    t.bigint "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
     t.index ["artist_id"], name: "index_releases_on_artist_id"
     t.index ["label_id"], name: "index_releases_on_label_id"
-    t.index ["tags_id"], name: "index_releases_on_tags_id"
+    t.index ["tag_id"], name: "index_releases_on_tag_id"
   end
 
   create_table "releases_tags", id: false, force: :cascade do |t|
