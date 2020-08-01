@@ -28,7 +28,7 @@ export const NavBar = () => {
               </Link>
             </div>
           </div>
-
+          <SearchBar />
           <div className="navbar-end">
             <div className="buttons"></div>
             <a
