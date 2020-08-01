@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_120113) do
+ActiveRecord::Schema.define(version: 2020_08_01_134359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,17 +37,30 @@ ActiveRecord::Schema.define(version: 2020_08_01_120113) do
     t.index ["release_id"], name: "index_labels_on_release_id"
   end
 
+  create_table "labels_releases", id: false, force: :cascade do |t|
+    t.integer "label_id"
+    t.integer "release_id"
+  end
+
   create_table "releases", force: :cascade do |t|
     t.string "release_type", null: false
     t.string "embed_url"
     t.text "title", null: false
     t.integer "original_release_year", null: false
     t.bigint "artist_id", null: false
-    t.bigint "label_id", null: false
+    t.bigint "label_id"
+    t.bigint "tags_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["artist_id"], name: "index_releases_on_artist_id"
     t.index ["label_id"], name: "index_releases_on_label_id"
+    t.index ["tags_id"], name: "index_releases_on_tags_id"
+  end
+
+  create_table "releases_tags", id: false, force: :cascade do |t|
+    t.integer "release_id"
+    t.integer "tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
