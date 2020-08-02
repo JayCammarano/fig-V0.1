@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_014546) do
 
+ActiveRecord::Schema.define(version: 2020_08_01_203757) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,60 @@ ActiveRecord::Schema.define(version: 2020_08_01_014546) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.text "alias", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.bigint "release_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["release_id"], name: "index_labels_on_release_id"
+  end
+
+  create_table "labels_releases", id: false, force: :cascade do |t|
+    t.bigint "label_id", null: false
+    t.bigint "release_id", null: false
+    t.index ["label_id", "release_id"], name: "index_labels_releases_on_label_id_and_release_id"
+    t.index ["release_id", "label_id"], name: "index_labels_releases_on_release_id_and_label_id"
+  end
+
+  create_table "releases", force: :cascade do |t|
+    t.string "release_type", null: false
+    t.string "embed_url"
+    t.text "title", null: false
+    t.integer "original_release_year"
+    t.bigint "artist_id", null: false
+    t.bigint "label_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
+    t.index ["artist_id"], name: "index_releases_on_artist_id"
+    t.index ["label_id"], name: "index_releases_on_label_id"
+    t.index ["tag_id"], name: "index_releases_on_tag_id"
+  end
+
+  create_table "releases_tags", id: false, force: :cascade do |t|
+    t.bigint "release_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["release_id", "tag_id"], name: "index_releases_tags_on_release_id_and_tag_id"
+    t.index ["tag_id", "release_id"], name: "index_releases_tags_on_tag_id_and_release_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "release_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["release_id"], name: "index_tags_on_release_id"
   end
 
 end

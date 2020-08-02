@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
- *= require foundation_and_overrides
-
  */
+@import "customUtilities.css";
+@import "mystyles.css";
+@import "bulmaswatch.min.css";
