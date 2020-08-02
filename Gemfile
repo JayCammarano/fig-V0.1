@@ -54,3 +54,4 @@ gem 'devise'
 gem 'webpacker', '~> 3.3'
 gem "carrierwave"
 gem "bulma-rails", "~> 0.9.0"
+gem 'active_model_serializers', '~> 0.10.0' 

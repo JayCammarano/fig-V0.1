@@ -12,8 +12,8 @@ Gems:
 - gem 'omniauth'
 - gem "carrierwave"
 - gem "bulma-rails", "~> 0.9.0"
-
-Packages:
+- gem 'active_model_serializers', '~> 0.10.0'
+  Packages:
 
 - `yarn add node-sass`
 - `yarn add bulma`
