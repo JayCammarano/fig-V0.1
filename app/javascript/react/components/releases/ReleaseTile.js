@@ -2,8 +2,9 @@ import React from "react";
 
 const ReleaseTile = ({title, original_release_year, release_type, release_id, label_id}) => {
   return (
-    <div className="column is-one-third">
+    <div className="column is-one-third m-t-lg">
       <div className="card has-background-light">
+        <p>{release_type}</p>
         <figure className="image is-48by48 m-sm">
           <img
             src=""
