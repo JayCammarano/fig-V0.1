@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'homes#index'
 
   get '/artists', to: 'homes#index'
+  get '/artists/:id', to: 'homes#index'
 
 
   resources :artists, only: [:index]
