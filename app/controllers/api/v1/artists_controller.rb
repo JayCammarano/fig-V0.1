@@ -1,4 +1,4 @@
-class Api::V1::ArtistsController < ApplicationController
+class Api::V1::ArtistsController < ApiController
   def index    
     render json: Artist.all
   end
