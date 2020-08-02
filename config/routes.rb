@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :artists, only: [:index, :create, :new, :show, :search] do
-        resources :releases, only: [:index, :show]
+        resources :releases, only: [:show]
       end
     end
   end
