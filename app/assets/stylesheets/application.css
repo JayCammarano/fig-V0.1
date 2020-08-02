@@ -13,5 +13,6 @@
  *= require_tree .
  *= require_self
  */
- @import "mystyles.css";
- @import "bulmaswatch.min.css"
+@import "customUtilities.css";
+@import "mystyles.css";
+@import "bulmaswatch.min.css";
