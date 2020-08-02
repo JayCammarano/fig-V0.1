@@ -2,8 +2,8 @@ class Release < ApplicationRecord
   validates :title, presence: true
   validates :release_type, presence: true
   validates :original_release_year, presence: true
-  validate :artists_presence, on: :create
-  validate :tags_presence, on: :create
+  validates :artists_presence, on: :create
+  validates :tags_presence, on: :create
 
   def artists_presence
    errors.add(:artist, "You must add at least one artist") unless artists.present?
