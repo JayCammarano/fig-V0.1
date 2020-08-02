@@ -1,9 +1,8 @@
 class Api::V1::ReleasesController < ApplicationController
 
   def show
-    debugger
-    @artist = Artist.find(params[:id]) 
-
+    @artist = Artist.find(params[:artist_id]) 
+    @reviews = @artist.releases.find(params[:id])
     render json: @artist
   end
 end

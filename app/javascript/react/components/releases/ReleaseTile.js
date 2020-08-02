@@ -17,7 +17,7 @@ const ReleaseTile = ({
         <figure className="image is-48by48 m-sm">
           <img src="" className="card-image" alt="Cover Image" />
         </figure>
-        <Link to={`/artist/${artist_id}/releases/${release_id}`}>
+        <Link to={`/artists/${artist_id}/releases/${release_id}`}>
           <h4 className="card-header-title has-text-dark">
             {title} - {original_release_year}
           </h4>
