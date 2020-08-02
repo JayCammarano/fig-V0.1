@@ -10,8 +10,9 @@ const ReleaseTile = ({
   label_id,
 }) => {
   return (
-    <div className="column is-one-third">
+    <div className="column is-one-third m-t-lg">
       <div className="card has-background-light">
+
         <p className="has-text-weight-bold has-text-grey m-sm">
           <b>{release_type}</b>
         </p>

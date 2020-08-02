@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_08_02_202223) do
     t.string "release_type", null: false
     t.string "embed_url"
     t.text "title", null: false
-    t.integer "original_release_year"
+    t.integer "original_release_year", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
