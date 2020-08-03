@@ -18,3 +18,4 @@ Packages:
 
 - `yarn add node-sass`
 - `yarn add bulma`
+= `yarn add react-dropzone`
