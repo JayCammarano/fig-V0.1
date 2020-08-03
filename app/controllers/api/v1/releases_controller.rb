@@ -1,11 +1,9 @@
-class Api::V1::ArtistsController < ApiController
-  def index    
-    render json: Artist.all
-  end
-  def show
-    @artist = Artist.find(params[:id]) 
+class Api::V1::ReleasesController < ApiController
 
-    render json: @artist
+  def show
+    @artist = Artist.find(params[:artist_id]) 
+    @releases = @artist.releases
+    render json: @releases 
   end
 
   def create
