@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_03_173321) do
+ActiveRecord::Schema.define(version: 2020_08_03_174756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_08_03_173321) do
     t.text "alias", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "artist_photo"
   end
 
   create_table "artists_releases", id: false, force: :cascade do |t|
@@ -74,6 +75,7 @@ ActiveRecord::Schema.define(version: 2020_08_03_173321) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.string "cover_photo"
+    t.string "label_logo"
   end
 
   create_table "releases_tags", id: false, force: :cascade do |t|
