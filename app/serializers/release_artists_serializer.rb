@@ -10,5 +10,5 @@ class ReleaseArtistsSerializer < ActiveModel::Serializer
     object.labels.each do |label|
       label.name
     end
-    
+  end
 end
