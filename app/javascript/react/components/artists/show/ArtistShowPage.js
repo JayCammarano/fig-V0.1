@@ -8,7 +8,7 @@ const ArtistShowPage = (props) => {
       alias: [],
       name: "",
       description: "",
-      releases: [
+      relatedReleases: [
         {
           id: "",
           title: "",
@@ -38,8 +38,8 @@ const ArtistShowPage = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
-  console.log(getArtist);
-  const releaseTiles = getArtist.releases.map((release) => {
+  debugger
+  const releaseTiles = getArtist.relatedReleases.map((release) => {
     return (
       <ReleaseTile
         key={release.id}

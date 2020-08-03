@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get '/artists', to: 'homes#index'
   get '/artists/:id', to: 'homes#index'
+  get "/artists/:artist_id/releases/:id", to: 'homes#index'
 
 
   resources :artists, only: [:index]
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :artists, only: [:index, :create, :new, :show, :search] do
-        resources :releases, only: [:index, :show]
+        resources :releases, only: [:show]
       end
     end
   end
