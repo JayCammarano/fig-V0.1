@@ -3,8 +3,7 @@ class Api::V1::ArtistsController < ApiController
     render json: Artist.all
   end
   def show
-    @artist = Artist.find(params[:id]) 
-
-    render json: @artist
+    @artist = Artist.find(params[:id])
+    render json: @artist, serializer: ArtistReleasesSerializer
   end
 end
