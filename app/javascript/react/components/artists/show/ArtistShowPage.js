@@ -41,7 +41,7 @@ const ArtistShowPage = (props) => {
   debugger
   const releaseTiles = getArtist.relatedReleases.map((release) => {
     return (
-      <ReleaseTile
+        <ReleaseTile
         key={release.id}
         title={release.title}
         embed_url={release.embed_url}
