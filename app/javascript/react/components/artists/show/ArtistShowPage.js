@@ -83,7 +83,7 @@ const ArtistShowPage = (props) => {
             </section>
           </div>
         </section>
-        <section className="container is-4">
+        <section className="container">
   <div className="columns features is-multiline">{releaseTiles}</div>
         </section>
       </div>

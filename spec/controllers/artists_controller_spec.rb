@@ -21,8 +21,6 @@ RSpec.describe Api::V1::ArtistsController, type: :controller do
       expect(returned_json[0]["name"]).to eq(artist1.name)
       expect(returned_json[0]["description"]).to eq(artist1.description)
       expect(returned_json[0]["releases"]).to eq(artist1.releases)
-
     end
   end
-
 end
