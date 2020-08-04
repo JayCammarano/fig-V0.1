@@ -44,23 +44,37 @@ const ReleaseShowPage = (props) => {
     );
   });
   return (
-    <div className="columns">
-      <div className="column is-one-third m-lg">
-        <div className="card has-background-light">
-          <p className="title has-text-weight-bold has-text-grey m-sm">
-            {getRelease.title}
-          </p>
-          <figure className="image is-48by48 m-sm">
-            <img src="" className="card-image" alt="Cover Image" />
-          </figure>
-          <p className="pl-4 has-text-dark">{getRelease.description}</p>
-
-          <p className="center">Associated Tags</p>
-        </div>
-      </div>
-      <div className="column is-two-fifths m-lg">
-        <p>Embed can go here</p>
-        <div className="center">{labelListingArray}</div>
+    <div>
+      <div>
+        <section>
+          <div>
+            <section className="hero is-dark">
+              <h1 className="title is-dark pt-4 pl-2 ml-5">
+                {getRelease.title}
+              </h1>
+              <div className="column is-4 is-one-half">
+                <div className="tabs is-4 is-boxed is-toggle">
+                  <ul>
+                    <li className="is-active">
+                      <a>Description</a>
+                    </li>
+                    <li>
+                      <a>Credits</a>
+                    </li>
+                    <li>
+                      <a>Tags</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+        <section>
+          <div className="">
+            <p>{getRelease.description}</p>
+          </div>
+        </section>
       </div>
     </div>
   );
