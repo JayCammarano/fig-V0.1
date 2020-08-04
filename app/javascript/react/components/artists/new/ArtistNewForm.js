@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import _ from "lodash";
-import ErrorList from "../../global/ErrorList";
+import AliasForm from "./AliasForm";
 
 const ArtistNewForm = () => {
   const [artistRecord, setArtistRecord] = useState({
     name: "",
     description: "",
-    alias: "",
+    alias: [""],
   });
-
+  const [aliasFields, setAliasFields] = useState(["input"]);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState("");
 
+  const pushToAlias = () => {};
+
+
   const validForSubmission = () => {
-    let nameError = "Name can't be blank."
-    if (!artistRecord.name){
-    setErrors(nameError);
+    let nameError = "Name can't be blank.";
+    if (!artistRecord.name) {
+      setErrors(nameError);
+    } else {
+      return true;
     }
   };
-
-  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const handleInputChange = (event) => {
     setArtistRecord({
@@ -30,11 +34,12 @@ const ArtistNewForm = () => {
 
   const onSubmitHandeler = (event) => {
     event.preventDefault();
-    if (validForSubmission()) {
+    if (validForSubmission() === true) {
       addNewArtist(artistRecord);
+      debugger;
     }
   };
-  debugger
+
   const addNewArtist = (artist) => {
     fetch(`/api/v1/artists`, {
       method: "POST",
@@ -65,6 +70,27 @@ const ArtistNewForm = () => {
     return <Redirect to="/artists" />;
   }
 
+  const addAliasField = (event) => {
+    let totalFields = ["input"];
+    aliasFields.forEach((aliasField) => {
+      totalFields.push(aliasField);
+    });
+    setAliasFields(totalFields);
+  };
+  let n = 0;
+  let aliasForms = aliasFields.map((inputField) => {
+    n = n + 1;
+    return (
+      <AliasForm
+        handleInputChange={handleInputChange}
+        alias = {artistRecord.alias}
+        key={n}
+        id={n}
+      />
+    );
+  });
+
+
   return (
     <div>
       <h1 className="title has-text-light center pt-4">Add A New Artist</h1>
@@ -87,20 +113,16 @@ const ArtistNewForm = () => {
                 value={artistRecord.name}
               />
             </label>
-      <p className="center has-text-warning">{errors}</p>
+            <p className="center has-text-warning">{errors}</p>
           </div>
           <div className="column is-4">
-            <label htmlFor="image_url">
-              <input
-                type="text"
-                id="alias"
-                name="alias"
-                size="50"
-                placeholder="Aliases, separate names with commas"
-                onChange={handleInputChange}
-                value={artistRecord.alias}
-              />
-            </label>
+            {aliasForms}
+            <p
+              className="is-primary has-text-weight-bold"
+              onClick={addAliasField}
+            >
+              + Add Alias
+            </p>
           </div>
           <div className="column is-4">
             <label htmlFor="description">
@@ -119,8 +141,9 @@ const ArtistNewForm = () => {
             <div className="button-group">
               <input
                 type="submit"
-                className="button is-primary has-text-dark has-text-weight-bold"
-                value="Submit "
+                className="button is-primary has-text-weight-bold"
+                onClick={onSubmitHandeler}
+                value="Submit"
               />
             </div>
           </div>
