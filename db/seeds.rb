@@ -10,4 +10,4 @@ tag1 = Tag.create(name: "heavy-metal")
 label1 = Label.create(name: "Polyvinyl", description: "A Label with of Montreal on it")
 artist1 = Artist.create(name: "Manilla Road", description: "Heavy metal band from a country that looks like a country", alias: ["Manilla Road", "Other Name"])
 
-release1 = Release.create(release_type: "EP", title: "A Cool Tune", description: "Wow. I love this record. So Cool! Here is its history!", original_release_year: 1997, artists: [artist1], labels: [label1], tags: [tag1])
+release1 = Release.create(release_type: "EP", title: "A Cool Tune", description: "Wow. I love this record. So Cool! Here is its history!", original_release_year: 1997, artists: [artist1], labels: [label1], tags: [tag1], description: "A really good album with a long history!")

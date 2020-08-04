@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import LabelTile from "../../labels/LabelTile";
+import ReleaseCredits from "./ReleaseCredits";
+import ReleaseDescription from "./ReleaseDescription";
+import ReleaseTags from "./ReleaseTags";
 
 const ReleaseShowPage = (props) => {
   const artistID = props.match.params.artist_id;
@@ -14,7 +15,10 @@ const ReleaseShowPage = (props) => {
     original_release_year: "",
     relatedArtists: [{ id: "", name: "", description: "", alias: [] }],
     relatedLabels: [{ name: "" }],
+    description: "",
   });
+  const [selectedTab, setSelectedTab] = useState("description");
+
   useEffect(() => {
     fetch(`/api/v1/artists/${artistID}/releases/${releaseID}`)
       .then((response) => {
@@ -34,15 +38,9 @@ const ReleaseShowPage = (props) => {
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
 
-  const labelListingArray = getRelease.relatedLabels.map((label) => {
-    return (
-      <LabelTile
-        key={label.id}
-        name={label.name}
-        description={label.description}
-      />
-    );
-  });
+  const activeTab = (tab) => {
+
+  }
   return (
     <div>
       <div>
@@ -52,16 +50,16 @@ const ReleaseShowPage = (props) => {
               <h1 className="title is-dark pt-4 pl-2 ml-5">
                 {getRelease.title}
               </h1>
-              <div className="column is-4 is-one-half">
+              <div className="column is-4 is-one-half m-l-lg">
                 <div className="tabs is-4 is-boxed is-toggle">
                   <ul>
-                    <li className="is-active">
+                    <li id="description" className="is-active" onClick={activeTab("description")}>
                       <a>Description</a>
                     </li>
-                    <li>
+                    <li id="credits">
                       <a>Credits</a>
                     </li>
-                    <li>
+                    <li id="tags">
                       <a>Tags</a>
                     </li>
                   </ul>
@@ -69,10 +67,9 @@ const ReleaseShowPage = (props) => {
               </div>
             </section>
           </div>
-        </section>
-        <section>
-          <div className="">
-            <p>{getRelease.description}</p>
+          <div id="tab-content">
+            <ReleaseDescription description={getRelease.description} />
+            <ReleaseCredits artists={getRelease.relatedArtists} labels={getRelease.relatedLabels} />
           </div>
         </section>
       </div>
