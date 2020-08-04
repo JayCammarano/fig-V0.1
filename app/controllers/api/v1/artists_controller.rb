@@ -9,13 +9,7 @@ class Api::V1::ArtistsController < ApiController
   end
 
   def create
-    artist_names = [artist_params["name"]]
-    aliases = artist_params["alias"].split(",")
-    aliases.each do |name|
-      artist_names << name
-    end
-    artist_params["alias"] = artist_names
-    binding.pry
+    add_to_alias_array(artist_params["name"], artist_params)
     
     new_artist = Artist.new(artist_params)
     if new_artist.save

@@ -13,8 +13,6 @@ const ArtistNewForm = () => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState("");
 
-  const pushToAlias = () => {};
-
 
   const validForSubmission = () => {
     let nameError = "Name can't be blank.";
@@ -77,6 +75,10 @@ const ArtistNewForm = () => {
     });
     setAliasFields(totalFields);
   };
+  const handleAliasChange = (event) => {
+    
+
+  }
   let n = 0;
   let aliasForms = aliasFields.map((inputField) => {
     n = n + 1;

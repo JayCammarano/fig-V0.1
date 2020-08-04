@@ -2,7 +2,9 @@ import React from "react";
 
 const AliasForm = (props) => {
   let handleChange = (event) => {
+    debugger
     props.handleInputChange(event.target.value);
+    debugger
   };
   
   return (
@@ -10,7 +12,7 @@ const AliasForm = (props) => {
       <input
         key={props.id}
         type="text"
-        id={`alias ${props.id}`}
+        id={props.id}
         name="alias"
         size="50"
         placeholder="Alias"
