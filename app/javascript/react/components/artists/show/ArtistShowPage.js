@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
 import ReleaseTile from "../../releases/ReleaseTile";
+import { Link } from "react-router-dom";
 
 const ArtistShowPage = (props) => {
   let artistID = props.match.params.id;
   const [getArtist, setArtist] = useState({
-      id: "",
-      alias: [],
-      name: "",
-      description: "",
-      relatedReleases: [
-        {
-          id: "",
-          title: "",
-          release_type: "",
-          embed_url: "",
-          original_release_year: "",
-          label_id: "",
-          tag_id: "",
-        },
-      ],
+    id: "",
+    alias: [],
+    name: "",
+    description: "",
+    relatedReleases: [
+      {
+        id: "",
+        title: "",
+        release_type: "",
+        embed_url: "",
+        original_release_year: "",
+        label_id: "",
+        tag_id: "",
+      },
+    ],
   });
   useEffect(() => {
     fetch(`/api/v1/artists/${artistID}/`)
@@ -38,7 +39,6 @@ const ArtistShowPage = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
-  debugger
   const releaseTiles = getArtist.relatedReleases.map((release) => {
     return (
       <ReleaseTile
@@ -59,9 +59,7 @@ const ArtistShowPage = (props) => {
         <section>
           <div>
             <section className="hero is-dark">
-              <h1 className="title is-dark pt-4 pl-2 ml-5">
-                {getArtist.name}
-              </h1>
+              <h1 className="title is-dark pt-4 pl-2 ml-5">{getArtist.name}</h1>
               <div className="column is-4 is-one-half">
                 <div className="tabs is-4 is-boxed is-toggle">
                   <ul>
@@ -72,10 +70,12 @@ const ArtistShowPage = (props) => {
                       <a>Releases</a>
                     </li>
                     <li>
-                      <a>Associated Labels</a>
+                      <a>Labels</a>
                     </li>
                     <li>
-                      <a>Tags</a>
+                      <Link to={`/artists/${artistID}/releases/new`}>
+                        Add Release
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -84,7 +84,7 @@ const ArtistShowPage = (props) => {
           </div>
         </section>
         <section className="container">
-  <div className="columns features is-multiline">{releaseTiles}</div>
+          <div className="columns features is-multiline">{releaseTiles}</div>
         </section>
       </div>
     </div>
