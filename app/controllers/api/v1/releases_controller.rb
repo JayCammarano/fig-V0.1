@@ -8,20 +8,32 @@ class Api::V1::ReleasesController < ApiController
 
     def create
       @release = Release.new(release_params)
+      
+      params[:artists].each do |artist|
+        if artist === ""
+          
+        else
+          name_hash = {name: artist}
+          new_artist = Artist.find_or_initialize_by(name_hash)
+          @release.artists << new_artist
+        end
+      end
+  
+      if @release.save      
+        @release.artists.each do |artist|
+          artist.create 
+        end
 
-      if @release.save
-        flash[:success] = "Release successfully created"
-        redirect_to @release
+        render json: @release 
       else
-        flash[:error] = "Something went wrong"
-        render 'new'
+      render json: {errors: @release.errors.full_messages}
       end
     end
     
   private
 
   def release_params
-    params.require(:release).permit(:title, :description, :artists, :tags)
+    params.require(:release).permit(:title, :description, :original_release_year, :release_type)
   end
 
 end

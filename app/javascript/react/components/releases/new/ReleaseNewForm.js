@@ -8,14 +8,16 @@ const ReleaseNewForm = (props) => {
   const [releaseRecord, setReleaseRecord] = useState({
     title: "",
     description: "",
-    artists: [{artistID}],
+    artists: [""],
+    release_type: "Album",
+    original_release_year: 2020
   });
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState("");
 
   const validForSubmission = () => {
-    let nameError = "Name can't be blank.";
-    if (!releaseRecord.name) {
+    let nameError = "Title can't be blank.";
+    if (!releaseRecord.title) {
       setErrors(nameError);
     } else {
       return true;
@@ -31,13 +33,14 @@ const ReleaseNewForm = (props) => {
 
   const onSubmitHandeler = (event) => {
     event.preventDefault();
+    debugger;
     if (validForSubmission() === true) {
       addNewRelease(releaseRecord);
     }
   };
 
   const addNewRelease = (release) => {
-    fetch(`/api/v1/artists/1/releases`, {
+    fetch(`/api/v1/artists/${artistID}/releases`, {
       method: "POST",
       credentials: "same-origin",
       headers: {
@@ -63,7 +66,7 @@ const ReleaseNewForm = (props) => {
   };
 
   if (shouldRedirect) {
-    return <Redirect to="/artists" />;
+    return <Redirect to={`/artists/${artistID}/`} />;
   }
 
   const handleArtistChange = (event) => {
@@ -81,7 +84,27 @@ const ReleaseNewForm = (props) => {
       <h1 className="title has-text-light center pt-4">Add A New Release</h1>
       <section className="container is-6 center">
         <form onSubmit={onSubmitHandeler}>
-          <div className="column is-4">
+          <div className="column is-4 center">
+          <label htmlFor="release_type">
+              <select
+                type="text"
+                id="release_type"
+                name="release_type"
+                placeholder="Release Type"
+                onChange={handleInputChange}
+                value={releaseRecord.release_type}
+              >
+                <option value="Album">Album</option>
+                <option value="EP">EP</option>
+                <option value="Single">Single</option>
+                <option value="Dj Set">EP</option>
+                <option value="Anthology">Anthology</option>
+                <option value="Compilation">Compilation</option>
+                <option value="Mixtape">Mixtape</option>
+                <option value="Demo">Demo</option>
+                <option value="Concert Recording">Concert Recording</option>
+              </select>
+            </label>
             <label htmlFor="name">
               <input
                 type="text"
@@ -95,10 +118,11 @@ const ReleaseNewForm = (props) => {
               />
             </label>
             <p className="center has-text-warning">{errors}</p>
-          <MultipleArtistFields
-            handleArtistChange={handleArtistChange}
-            releaseRecord={releaseRecord}
-          />
+            <MultipleArtistFields
+              handleArtistChange={handleArtistChange}
+              releaseRecord={releaseRecord}
+            />
+            
             <label htmlFor="description">
               <input
                 type="text"
@@ -108,6 +132,18 @@ const ReleaseNewForm = (props) => {
                 placeholder="Description"
                 onChange={handleInputChange}
                 value={releaseRecord.description}
+              />
+            </label>
+            
+            <label htmlFor="original_release_year">
+              <input
+                type="text"
+                id="original_release_year"
+                size="50"
+                name="original_release_year"
+                placeholder="Original Release Year"
+                onChange={handleInputChange}
+                value={releaseRecord.original_release_year}
               />
             </label>
           </div>
