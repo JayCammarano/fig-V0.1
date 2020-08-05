@@ -3,7 +3,7 @@ import ArtistIndexTile from "./ArtistIndexTile";
 
 const ArtistIndexContainter = () => {
   const [getArtists, setArtists] = useState([
-    { id: "", name: "", description: "", alias: [] },
+    { id: "", name: "", description: "" },
   ]);
   useEffect(() => {
     fetch("/api/v1/artists")

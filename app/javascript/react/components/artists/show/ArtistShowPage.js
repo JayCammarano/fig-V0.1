@@ -8,7 +8,7 @@ const ArtistShowPage = (props) => {
       alias: [],
       name: "",
       description: "",
-      releases: [
+      relatedReleases: [
         {
           id: "",
           title: "",
@@ -38,10 +38,9 @@ const ArtistShowPage = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
-  console.log(getArtist);
-  const releaseTiles = getArtist.releases.map((release) => {
+  const releaseTiles = getArtist.relatedReleases.map((release) => {
     return (
-      <ReleaseTile
+        <ReleaseTile
         key={release.id}
         title={release.title}
         embed_url={release.embed_url}
@@ -49,6 +48,7 @@ const ArtistShowPage = (props) => {
         release_type={release.release_type}
         release_id={release.id}
         label_id={release.label_id}
+        artist_id={artistID}
       />
     );
   });
