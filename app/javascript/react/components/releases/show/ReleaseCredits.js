@@ -24,13 +24,13 @@ const ReleaseCredits = (props) => {
     );
   });
   return (
-    <div className="columns">
+    <div>
       <div className="column m-l-lg">
         <p className="has-text-light has-text-weight-bold">Artists:</p>
         {artistListingArray}
       </div>
 
-      <div className="column">
+      <div className="column m-l-lg">
         <p className="has-text-light has-text-weight-bold">Labels:</p>
         {labelListingArray}
       </div>

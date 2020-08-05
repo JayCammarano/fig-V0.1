@@ -51,27 +51,14 @@ const ReleaseShowPage = (props) => {
                 {getRelease.title}
               </h1>
               <div className="column is-4 is-one-half m-l-lg">
-                <div className="tabs is-4 is-boxed is-toggle">
-                  <ul>
-                    <li id="description" className="is-active" onClick={activeTab("description")}>
-                      <a>Description</a>
-                    </li>
-                    <li id="credits">
-                      <a>Credits</a>
-                    </li>
-                    <li id="tags">
-                      <a>Tags</a>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </section>
           </div>
-          <div id="tab-content">
+        </section>
+        <div>
             <ReleaseDescription description={getRelease.description} />
             <ReleaseCredits artists={getRelease.relatedArtists} labels={getRelease.relatedLabels} />
           </div>
-        </section>
       </div>
     </div>
   );
