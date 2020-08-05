@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import MultipleArtistFields from "./MultipleArtistFields";
@@ -8,12 +8,40 @@ const ReleaseNewForm = (props) => {
   const [releaseRecord, setReleaseRecord] = useState({
     title: "",
     description: "",
-    artists: [""],
+    artists: [],
     release_type: "Album",
-    original_release_year: 2020
+    original_release_year: 2020,
   });
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState("");
+
+  const setArtistInit = (name) => {
+    let artists = releaseRecord.artists;
+    artists[0] = name;
+    setReleaseRecord({
+      ...releaseRecord,
+      artists,
+    });
+  };
+  useEffect(() => {
+    fetch(`/api/v1/artists/${artistID}/`)
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+
+      .then((response) => response.json())
+      .then((body) => {
+        console.log(body.name);
+        setArtistInit(body.name);
+      })
+      .catch((error) => console.error(`Error in fetch: ${error.message}`));
+  }, []);
 
   const validForSubmission = () => {
     let nameError = "Title can't be blank.";
@@ -33,7 +61,6 @@ const ReleaseNewForm = (props) => {
 
   const onSubmitHandeler = (event) => {
     event.preventDefault();
-    debugger;
     if (validForSubmission() === true) {
       addNewRelease(releaseRecord);
     }
@@ -80,17 +107,18 @@ const ReleaseNewForm = (props) => {
   };
 
   return (
-    <div>
-      <h1 className="title has-text-light center pt-4">Add A New Release</h1>
+    <div className="columns">
       <section className="container is-6 center">
         <form onSubmit={onSubmitHandeler}>
-          <div className="column is-4 center">
-          <label htmlFor="release_type">
+          <div className="column center">
+            <h1 className="title has-text-light center pt-4">
+              Add A New Release
+            </h1>
+            <label htmlFor="release_type">
               <select
                 type="text"
                 id="release_type"
                 name="release_type"
-                placeholder="Release Type"
                 onChange={handleInputChange}
                 value={releaseRecord.release_type}
               >
@@ -105,6 +133,7 @@ const ReleaseNewForm = (props) => {
                 <option value="Concert Recording">Concert Recording</option>
               </select>
             </label>
+            <br />
             <label htmlFor="name">
               <input
                 type="text"
@@ -122,7 +151,7 @@ const ReleaseNewForm = (props) => {
               handleArtistChange={handleArtistChange}
               releaseRecord={releaseRecord}
             />
-            
+
             <label htmlFor="description">
               <input
                 type="text"
@@ -134,14 +163,14 @@ const ReleaseNewForm = (props) => {
                 value={releaseRecord.description}
               />
             </label>
-            
+            <br />
             <label htmlFor="original_release_year">
               <input
                 type="text"
+                size="4"
                 id="original_release_year"
-                size="50"
                 name="original_release_year"
-                placeholder="Original Release Year"
+                placeholder="Year"
                 onChange={handleInputChange}
                 value={releaseRecord.original_release_year}
               />

@@ -23,7 +23,6 @@ class Api::V1::ReleasesController < ApiController
         @release.artists.each do |artist|
           artist.save 
         end
-
         render json: @release 
       else
       render json: {errors: @release.errors.full_messages}

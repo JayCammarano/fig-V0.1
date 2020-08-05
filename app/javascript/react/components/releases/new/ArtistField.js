@@ -6,19 +6,19 @@ const ArtistField = (props) => {
   };
 
   return (
-    <div>
-      <label htmlFor="artist">
-        <input
-          key={props.id}
-          type="text"
-          id={props.id}
-          name="artists"
-          size="50"
-          placeholder="Artist"
-          onChange={handleChange}
-        />
-      </label>
-    </div>
+    
+    <label htmlFor="artist">
+      <input
+        key={props.id}
+        type="text"
+        id={props.id}
+        name="artists"
+        size="50"
+        placeholder="Artists"
+        onChange={handleChange}
+        value={props.value}
+      />
+    </label>
   );
 };
 
