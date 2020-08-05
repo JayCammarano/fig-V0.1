@@ -21,7 +21,7 @@ class Api::V1::ReleasesController < ApiController
   
       if @release.save      
         @release.artists.each do |artist|
-          artist.create 
+          artist.save 
         end
 
         render json: @release 
