@@ -9,9 +9,15 @@ class Api::V1::ArtistsController < ApiController
   end
 
   def create
-    add_to_alias_array(artist_params["name"], artist_params)
-    
-    new_artist = Artist.new(artist_params)
+=   new_artist = Artist.new(artist_params)
+    params[:alias].each do |alt_name|
+      name_hash = {alt_name: alt_name}
+      binding.pry
+
+      new_alias = Alias.new(name_hash)
+      new_artist.aliases << new_alias
+    end
+
     if new_artist.save
       render json: new_artist
     else
@@ -22,6 +28,6 @@ class Api::V1::ArtistsController < ApiController
   private
 
   def artist_params
-    params.require(:artist).permit(:name, :description, :alias)
+    params.require(:artist).permit(:name, :description)
   end
 end

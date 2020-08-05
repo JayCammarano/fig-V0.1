@@ -2,11 +2,9 @@ import React from "react";
 
 const AliasForm = (props) => {
   let handleChange = (event) => {
-    debugger
-    props.handleInputChange(event.target.value);
-    debugger
+    props.handleAliasChange(event);
   };
-  
+
   return (
     <label htmlFor="alias">
       <input
@@ -17,7 +15,6 @@ const AliasForm = (props) => {
         size="50"
         placeholder="Alias"
         onChange={handleChange}
-        value={props.alias}
       />
     </label>
   );

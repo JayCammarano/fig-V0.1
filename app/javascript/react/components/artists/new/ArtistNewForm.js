@@ -13,7 +13,6 @@ const ArtistNewForm = () => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState("");
 
-
   const validForSubmission = () => {
     let nameError = "Name can't be blank.";
     if (!artistRecord.name) {
@@ -34,10 +33,9 @@ const ArtistNewForm = () => {
     event.preventDefault();
     if (validForSubmission() === true) {
       addNewArtist(artistRecord);
-      debugger;
     }
   };
-
+  
   const addNewArtist = (artist) => {
     fetch(`/api/v1/artists`, {
       method: "POST",
@@ -76,22 +74,28 @@ const ArtistNewForm = () => {
     setAliasFields(totalFields);
   };
   const handleAliasChange = (event) => {
-    
+    let alias = artistRecord.alias;
+    alias[event.currentTarget.id] = event.currentTarget.value;
 
-  }
+    setArtistRecord({
+      ...artistRecord,
+      alias,
+    });
+  };
   let n = 0;
   let aliasForms = aliasFields.map((inputField) => {
     n = n + 1;
+
     return (
       <AliasForm
-        handleInputChange={handleInputChange}
-        alias = {artistRecord.alias}
+        handleAliasChange={handleAliasChange}
+        aliases={artistRecord.alias}
         key={n}
         id={n}
+        value={artistRecord.alias[`${self.id}`]}
       />
     );
   });
-
 
   return (
     <div>
