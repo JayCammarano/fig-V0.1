@@ -38,7 +38,6 @@ const ArtistShowPage = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
-  debugger
   const releaseTiles = getArtist.relatedReleases.map((release) => {
     return (
         <ReleaseTile

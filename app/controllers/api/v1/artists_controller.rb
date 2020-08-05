@@ -12,7 +12,6 @@ class Api::V1::ArtistsController < ApiController
 =   new_artist = Artist.new(artist_params)
     params[:alias].each do |alt_name|
       name_hash = {alt_name: alt_name}
-      binding.pry
 
       new_alias = Alias.new(name_hash)
       new_artist.aliases << new_alias
