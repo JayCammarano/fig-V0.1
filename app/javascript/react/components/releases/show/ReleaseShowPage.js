@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReleaseCredits from "./ReleaseCredits";
 import ReleaseDescription from "./ReleaseDescription";
 import ReleaseTags from "./ReleaseTags";
+import SoundCloudEmbed from "./SoundCloudEmbed";
 
 const ReleaseShowPage = (props) => {
   const artistID = props.match.params.artist_id;
@@ -38,9 +39,7 @@ const ReleaseShowPage = (props) => {
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
 
-  const activeTab = (tab) => {
-
-  }
+  const activeTab = (tab) => {};
   return (
     <div>
       <div>
@@ -50,15 +49,18 @@ const ReleaseShowPage = (props) => {
               <h1 className="title is-dark pt-4 pl-2 ml-5">
                 {getRelease.title}
               </h1>
-              <div className="column is-4 is-one-half m-l-lg">
-              </div>
+              <div className="column is-4 is-one-half m-l-lg"></div>
             </section>
           </div>
         </section>
         <div>
-            <ReleaseDescription description={getRelease.description} />
-            <ReleaseCredits artists={getRelease.relatedArtists} labels={getRelease.relatedLabels} />
-          </div>
+          <SoundCloudEmbed />
+          <ReleaseDescription description={getRelease.description} />
+          <ReleaseCredits
+            artists={getRelease.relatedArtists}
+            labels={getRelease.relatedLabels}
+          />
+        </div>
       </div>
     </div>
   );
