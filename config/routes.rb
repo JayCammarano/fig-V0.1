@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/artists', to: 'homes#index'
   get '/artists/:id', to: 'homes#index'
   get "/artists/:artist_id/releases/:id", to: 'homes#index'
-
+  get "/login", to: 'homes#index'
   resources :artists, only: [:index]
 
   namespace :api do

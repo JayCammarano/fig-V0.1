@@ -6,11 +6,13 @@ import ReleaseShowPage from "./releases/show/ReleaseShowPage";
 import ArtistNewForm from "./artists/new/ArtistNewForm";
 import ReleaseTile from "./releases/ReleaseTile";
 import ReleaseNewForm from "./releases/new/ReleaseNewForm";
+import Login from "./auth/Login";
 
 export const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/login" component={Login} />
         <Route exact path="/" component={ArtistIndexContainer} />
         <Route exact path="/artists" component={ArtistIndexContainer} />
         <Route
