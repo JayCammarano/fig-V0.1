@@ -50,7 +50,10 @@ gem 'factory_bot', group: [:development, :test]
 gem 'database_cleaner', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
-gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
 gem 'webpacker', '~> 3.3'
 gem "carrierwave"
 gem "bulma-rails", "~> 0.9.0"
+gem 'active_model_serializers', '~> 0.10.0' 
+gem "sprockets"
