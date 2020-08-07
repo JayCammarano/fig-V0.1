@@ -5,8 +5,14 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const [value, setValue] = React.useState(
+    localStorage.getItem("auth") || ""
+  );
   const [shouldRedirect, setShouldRedirect] = useState(false);
-  const [response, setResponse] = useState({});
+  const [responseJson, setresponseJson] = useState({headers:{
+    client: ""
+  }});
   const handleInputChange = (event) => {
     setLoginForm({
       ...loginForm,
@@ -14,71 +20,66 @@ const Login = () => {
     });
   };
 
-  const handleLogin = (e) => {
-    e.prevent.default();
-    fetch(`/auth/sign-in`, {
+  const handleLogin = (event) => {
+    event.preventDefault();
+    fetch(`/auth/sign_in`, {
       method: "POST",
-      credentials: "same-origin",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         email: loginForm.email,
         password: loginForm.password,
       },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then((response) => {
-        for (var pair of response.headers.entries()) {
-          // accessing the entries
-          if (pair[0] === "") {
-            // key I'm looking for in this instance
-            setResponse({
-              total: pair[1], // saving that value where I can use it
-            });
-          }
-        }
-        return response.json();
-      })
-      .then((body) => {
-        console.log(body);
-      })
-      .catch((error) => console.error(`Error in fetch: ${error.message}`));
+      body: JSON.stringify(loginForm),
+    }).then((res) =>
+      (res.headers.get("content-type").includes("json")
+        ? res.json()
+        : res.text()
+      )
+        .then((data) => ({
+          headers: [...res.headers].reduce((acc, header) => {
+            return { ...acc, [header[0]]: header[1] };
+          }, {}),
+          status: res.status,
+          data: data,
+        }))
+        .then((headers, status, data) => setresponseJson(headers, status, data))
+    );
   };
-  // if (shouldRedirect) {
-  //   return <Redirect to="/" />;
-  // }
-
+  useEffect(() => {
+    localStorage.setItem('auth', {"client": responseJson.headers.client, "access-token": responseJson.headers["access-token"], "uid": responseJson.headers.uid,});
+    console.log(value)
+  }, [responseJson]);  
   return (
     <div>
-      <div >
+      <div>
         <div>
           <h1 className="center">Sign in</h1>
-
         </div>
 
-        <form className="center" onSubmit={this.handleLogin}>
+        <form className="center" onSubmit={handleLogin}>
           <label>
-          <input placeholder="Username" className="center" name="email" id="email" onChange={handleInputChange} />
+            <input
+              placeholder="Username"
+              className="center"
+              name="email"
+              id="email"
+              onChange={handleInputChange}
+            />
           </label>
           <br />
           <label>
-          <input placeholder="Password" className="center"
-            name="password"
-            type="password"
-            id="password"
-
-            onChange={handleInputChange}
-          /></label>
+            <input
+              placeholder="Password"
+              className="center"
+              name="password"
+              type="password"
+              id="password"
+              onChange={handleInputChange}
+            />
+          </label>
           <br />
-          <input type="submit" onSubmit={handleLogin} />
+          <input type="submit" onClick={handleLogin} />
         </form>
       </div>
     </div>
