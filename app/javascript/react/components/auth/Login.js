@@ -48,16 +48,16 @@ const Login = () => {
   };
   useEffect(() => {
     localStorage.setItem('auth', {"client": responseJson.headers.client, "access-token": responseJson.headers["access-token"], "uid": responseJson.headers.uid,});
-    console.log(value)
   }, [responseJson]);  
   return (
     <div>
       <div>
         <div>
-          <h1 className="center">Sign in</h1>
+          <h1 className="center title m-b-md">Sign in</h1>
         </div>
 
         <form className="center" onSubmit={handleLogin}>
+          <div>
           <label>
             <input
               placeholder="Username"
@@ -67,7 +67,9 @@ const Login = () => {
               onChange={handleInputChange}
             />
           </label>
+          </div>
           <br />
+          <div>
           <label>
             <input
               placeholder="Password"
@@ -78,6 +80,7 @@ const Login = () => {
               onChange={handleInputChange}
             />
           </label>
+          </div>
           <br />
           <input type="submit" onClick={handleLogin} />
         </form>
