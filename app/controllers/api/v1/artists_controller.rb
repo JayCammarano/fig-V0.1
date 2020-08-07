@@ -1,5 +1,4 @@
 class Api::V1::ArtistsController < ApiController
-  before_action :authenticate_user!
 
   def index    
     render json: Artist.all

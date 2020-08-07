@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import NavBar from "../global/navbar/NavBar";
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState({
@@ -48,20 +49,22 @@ const Login = () => {
   };
   useEffect(() => {
     localStorage.setItem('auth', {"client": responseJson.headers.client, "access-token": responseJson.headers["access-token"], "uid": responseJson.headers.uid,});
+    debugger
   }, [responseJson]);  
   return (
     <div>
+      <NavBar/>
       <div>
         <div>
-          <h1 className="center title m-b-md">Sign in</h1>
+          <h1 className="center title m-t-md m-b-md">Sign In</h1>
         </div>
 
-        <form className="center" onSubmit={handleLogin}>
+        <form className="center m-l-md" onSubmit={handleLogin}>
           <div>
           <label>
             <input
-              placeholder="Username"
-              className="center"
+              placeholder="Email"
+              className="input center"
               name="email"
               id="email"
               onChange={handleInputChange}
@@ -73,7 +76,7 @@ const Login = () => {
           <label>
             <input
               placeholder="Password"
-              className="center"
+              className="input center"
               name="password"
               type="password"
               id="password"
@@ -82,7 +85,7 @@ const Login = () => {
           </label>
           </div>
           <br />
-          <input type="submit" onClick={handleLogin} />
+          <input type="submit" className="button" onClick={handleLogin} />
         </form>
       </div>
     </div>

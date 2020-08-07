@@ -7,6 +7,7 @@ import ArtistNewForm from "./artists/new/ArtistNewForm";
 import ReleaseTile from "./releases/ReleaseTile";
 import ReleaseNewForm from "./releases/new/ReleaseNewForm";
 import Login from "./auth/Login";
+import SignUp from "./auth/SignUp";
 
 export const App = (props) => {
   return (
@@ -14,6 +15,8 @@ export const App = (props) => {
       <Switch>
         <Route path="/login" component={Login} />
         <Route exact path="/" component={ArtistIndexContainer} />
+        <Route path="/signup" component={SignUp} />
+
         <Route exact path="/artists" component={ArtistIndexContainer} />
         <Route
           exact

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SignOutFetch = () => {
+const SessionCheckFetch = () => {
   
   return (
     <div>
@@ -9,4 +9,4 @@ const SignOutFetch = () => {
   )
 }
 
-export default SignOutFetch
+export default SessionCheckFetch
