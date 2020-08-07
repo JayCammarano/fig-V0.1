@@ -71,7 +71,7 @@ const ArtistShowPage = (props) => {
       labelClass = "";
 
       musicData = (
-        <BioTab description={getArtist.description} artistID={artistID} />
+        <BioTab description={getArtist} artistID={artistID} />
       );
     } else if (whichTab.id === "labels") {
       releaseClass = "";

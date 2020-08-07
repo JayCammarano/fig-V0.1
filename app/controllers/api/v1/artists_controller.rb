@@ -4,7 +4,9 @@ class Api::V1::ArtistsController < ApiController
   end
 
   def show
+    # // pass in @artist to lastf method call
     @artist = Artist.find(params[:id])
+    lastfmInfo = @artist.lastfmCaller()    
     render json: @artist, serializer: ArtistReleasesSerializer
   end
 
