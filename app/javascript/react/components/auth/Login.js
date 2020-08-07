@@ -6,7 +6,7 @@ const Login = () => {
     password: "",
   });
 
-  const [value, setValue] = React.useState(
+  const [value, setValue] = useState(
     localStorage.getItem("auth") || ""
   );
   const [shouldRedirect, setShouldRedirect] = useState(false);
