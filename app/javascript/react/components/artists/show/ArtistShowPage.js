@@ -70,9 +70,7 @@ const ArtistShowPage = (props) => {
       bioClass = "is-active";
       labelClass = "";
 
-      musicData = (
-        <BioTab description={getArtist} artistID={artistID} />
-      );
+      musicData = <BioTab description={getArtist} artistID={artistID} />;
     } else if (whichTab.id === "labels") {
       releaseClass = "";
       bioClass = "";
@@ -91,7 +89,7 @@ const ArtistShowPage = (props) => {
           <div>
             <section className="hero is-dark">
               <h1 className="title is-dark pt-4 pl-2 ml-5">{getArtist.name}</h1>
-              <div className="column is-4 is-one-half">
+              <div className="column is-4">
                 <div className="tabs is-4 is-boxed is-toggle">
                   <ul>
                     <li
@@ -108,13 +106,12 @@ const ArtistShowPage = (props) => {
                     >
                       <a>Releases</a>
                     </li>
-                    <li
-                      id="labels"
-                      className={labelClass}
-                      onClick={() => changeTabs("labels")}
+                    <Link
+                      className=""
+                      to={`/artists/${artistID}/update`}
                     >
-                      <a>Labels</a>
-                    </li>
+                      Edit Info
+                    </Link>
                     <li>
                       <Link to={`/artists/${artistID}/releases/new`}>
                         Add Release

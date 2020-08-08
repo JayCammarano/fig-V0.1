@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   get '/artists/:id', to: 'homes#index'
   get "/artists/:artist_id/releases/:id", to: 'homes#index'
 
+  get '/artists/:id/update', to: 'homes#index'
+
 
   resources :artists, only: [:index]
 
   namespace :api do
     namespace :v1 do
-      resources :artists, only: [:index, :create, :new, :show] do
+      resources :artists, only: [:index, :create, :new, :show, :update] do
         resources :releases, only: [:show, :create, :new]
       end
     end

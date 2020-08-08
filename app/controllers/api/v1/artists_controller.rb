@@ -26,6 +26,17 @@ class Api::V1::ArtistsController < ApiController
     end
   end
 
+  def update
+    @artist = Artist.find(params[:id])
+      if @artist.update_attributes(artist_params)
+        
+        render json: @artist, serializer: ArtistReleasesSerializer
+        
+      else
+        render json: @artist, serializer: ArtistReleasesSerializer
+      end
+  end
+  
   private
 
   def artist_params
