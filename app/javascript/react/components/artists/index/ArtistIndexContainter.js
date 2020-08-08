@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ArtistIndexTile from "./ArtistIndexTile";
+import NavBar from "../../global/navbar/NavBar";
 
 const ArtistIndexContainter = () => {
   const [getArtists, setArtists] = useState([
-    { id: "", name: "", description: "", alias: [] },
+    { id: "", name: "", description: "" },
   ]);
   useEffect(() => {
     fetch("/api/v1/artists")
@@ -37,9 +38,10 @@ const ArtistIndexContainter = () => {
 
   return (
     <div>
+      <NavBar />
       <section className="">
         <h3 className="title pl-2 ml-5 pt-2">Artists</h3>
-        <div className="columns">{artistTiles}</div>
+        <div className="columns is-multiline">{artistTiles}</div>
       </section>
     </div>
   );
