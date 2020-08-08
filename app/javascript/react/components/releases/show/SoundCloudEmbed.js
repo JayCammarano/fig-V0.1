@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const SoundCloudEmbed = (props) => {
   //Get the SoundCloud URL
   const [iFrame, setiFrame] = useState("");
   const url = "https://soundcloud.com/epitaph-records/this-wild-life-history";
   //Get the JSON data of song details with embed code from SoundCloud oEmbed
-
+useEffect(() => {
   fetch(
     `https://soundcloud.com/oembed?format=json&url=${url}&iframe=true`,
     {
@@ -26,6 +26,8 @@ const SoundCloudEmbed = (props) => {
     .then((body) => {
       setiFrame(body);
     });
+}, [])
+  
     let oEmbed = iFrame.html
   return (
   <div className="column is-two-fifths m-lg">

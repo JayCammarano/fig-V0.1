@@ -61,6 +61,7 @@ const ReleaseShowPage = (props) => {
           </div>
         </section>
         <div>
+          <SoundCloudEmbed />
           <ReleaseDescription description={getRelease.description} />
           <ReleaseCredits
             artists={getRelease.relatedArtists}
