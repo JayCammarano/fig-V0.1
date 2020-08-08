@@ -42,6 +42,7 @@ const ReleaseShowPage = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
+
   let musicData;
   let creditsClass = "";
   let descriptionClass = "is-active";
@@ -53,8 +54,12 @@ const ReleaseShowPage = (props) => {
     } else if (whichTab.id === "credits") {
       descriptionClass = "";
       creditsClass = "is-active";
-      musicData = <ReleaseCredits artists={getRelease.relatedArtists} labels={getRelease.relatedLabels}/>
-    
+      musicData = (
+        <ReleaseCredits
+          artists={getRelease.relatedArtists}
+          labels={getRelease.relatedLabels}
+        />
+      );
     }
   }
 
@@ -84,7 +89,9 @@ const ReleaseShowPage = (props) => {
                     <a>Credits</a>
                   </li>
                   <li>
-                    <Link to={`/artists/${artistID}/releases/${releaseID}`}>
+                    <Link
+                      to={`/artists/${artistID}/releases/${releaseID}/update`}
+                    >
                       Edit Release
                     </Link>
                   </li>
