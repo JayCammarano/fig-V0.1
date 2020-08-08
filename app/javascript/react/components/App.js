@@ -6,7 +6,7 @@ import ReleaseShowPage from "./releases/show/ReleaseShowPage";
 import ArtistNewForm from "./artists/new/ArtistNewForm";
 import ReleaseTile from "./releases/ReleaseTile";
 import ReleaseNewForm from "./releases/new/ReleaseNewForm";
-
+import ReleaseUpdatePage from "./releases/update/ReleaseUpdatePage"
 export const App = (props) => {
   return (
     <BrowserRouter>
@@ -24,6 +24,11 @@ export const App = (props) => {
           exact
           path="/artists/:artist_id/releases/:id"
           component={ReleaseShowPage}
+        />
+        <Route
+          exact
+          path="/artists/:artist_id/releases/:id/update"
+          component={ReleaseUpdatePage}
         />
       </Switch>
     </BrowserRouter>
