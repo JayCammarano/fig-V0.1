@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../global/navbar/NavBar";
+import {Redirect} from "react-router-dom"
 const Login = () => {
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -44,12 +45,19 @@ const Login = () => {
           data: data,
         }))
         .then((headers, status, data) => setresponseJson(headers, status, data))
+        .then(setShouldRedirect(true))
+
     );
   };
   let json = JSON.stringify({"client": responseJson.headers.client, "access-token": responseJson.headers["access-token"], "uid": responseJson.headers.uid,})
   useEffect(() => {
     localStorage.setItem('auth', json);
   }, [responseJson]);  
+
+  if (shouldRedirect) {
+    return <Redirect to={`/`} />;
+  }
+
   return (
     <div>
       <NavBar/>
