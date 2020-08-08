@@ -88,7 +88,7 @@ const ArtistShowPage = (props) => {
   return (
     <div>
       <div>
-        <NavBar/>
+        <NavBar />
         <section>
           <div>
             <section className="hero is-dark">
