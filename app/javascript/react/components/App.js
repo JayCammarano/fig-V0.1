@@ -1,21 +1,5 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-<<<<<<< HEAD
-import NavBar from "./global/navbar/NavBarContainer";
-
-export const App = (props) => {
-  return (
-    <div>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={NavBar} />
-      </Switch>
-    </BrowserRouter>
-    </div>
-  );
-};
-
-=======
 import ArtistIndexContainer from "./artists/index/ArtistIndexContainter";
 import ArtistShowPage from "./artists/show/ArtistShowPage";
 import ReleaseShowPage from "./releases/show/ReleaseShowPage";
@@ -45,5 +29,4 @@ export const App = (props) => {
     </BrowserRouter>
   );
 };
->>>>>>> 4f102d698048680483f9b4995c4bf62e3b2813d6
 export default App;
