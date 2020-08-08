@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import ReleaseTile from "../../releases/ReleaseTile";
 import { Link } from "react-router-dom";
-
+import ReleasesTab from "./ReleasesTab";
+import BioTab from "./BioTab";
+import LabelsTab from "./LabelsTab";
 const ArtistShowPage = (props) => {
   let artistID = props.match.params.id;
-  const [getArtist, setArtist] = useState({
+  const [whichTab, setWhichTab] = useState({ id: "releases" });
+  const [renderTab, setRenderTab] = useState("");
+
+  const changeTabs = (tab) => {
+    setWhichTab({ id: tab });
+  };
+  const defaultArtist = {
     id: "",
     alias: [],
     name: "",
@@ -20,7 +29,8 @@ const ArtistShowPage = (props) => {
         tag_id: "",
       },
     ],
-  });
+  };
+  const [getArtist, setArtist] = useState(defaultArtist);
   useEffect(() => {
     fetch(`/api/v1/artists/${artistID}/`)
       .then((response) => {
@@ -39,20 +49,41 @@ const ArtistShowPage = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
-  const releaseTiles = getArtist.relatedReleases.map((release) => {
-    return (
-      <ReleaseTile
-        key={release.id}
-        title={release.title}
-        embed_url={release.embed_url}
-        original_release_year={release.original_release_year}
-        release_type={release.release_type}
-        release_id={release.id}
-        label_id={release.label_id}
-        artist_id={artistID}
-      />
-    );
-  });
+  let musicData;
+  let releaseClass = "is-active";
+  let bioClass;
+  let labelClass;
+
+  if (getArtist !== defaultArtist) {
+    if (whichTab.id === "releases") {
+      releaseClass = "is-active";
+      bioClass = "";
+      labelClass = "";
+      musicData = (
+        <ReleasesTab
+          relatedReleases={getArtist.relatedReleases}
+          artistID={artistID}
+        />
+      );
+    } else if (whichTab.id === "bio") {
+      releaseClass = "";
+      bioClass = "is-active";
+      labelClass = "";
+
+      musicData = (
+        <BioTab description={getArtist} artistID={artistID} />
+      );
+    } else if (whichTab.id === "labels") {
+      releaseClass = "";
+      bioClass = "";
+      labelClass = "is-active";
+
+      musicData = (
+        <LabelsTab description={getArtist.description} artistID={artistID} />
+      );
+    }
+  }
+
   return (
     <div>
       <div>
@@ -63,13 +94,25 @@ const ArtistShowPage = (props) => {
               <div className="column is-4 is-one-half">
                 <div className="tabs is-4 is-boxed is-toggle">
                   <ul>
-                    <li>
+                    <li
+                      id="bio"
+                      className={bioClass}
+                      onClick={() => changeTabs("bio")}
+                    >
                       <a>Bio</a>
                     </li>
-                    <li className="is-active">
+                    <li
+                      id="releases"
+                      onClick={() => changeTabs("releases")}
+                      className={releaseClass}
+                    >
                       <a>Releases</a>
                     </li>
-                    <li>
+                    <li
+                      id="labels"
+                      className={labelClass}
+                      onClick={() => changeTabs("labels")}
+                    >
                       <a>Labels</a>
                     </li>
                     <li>
@@ -81,10 +124,8 @@ const ArtistShowPage = (props) => {
                 </div>
               </div>
             </section>
+            <div id="tabsHere">{musicData}</div>
           </div>
-        </section>
-        <section className="container">
-          <div className="columns features is-multiline">{releaseTiles}</div>
         </section>
       </div>
     </div>
