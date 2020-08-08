@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ReleasesTab from "./ReleasesTab";
 import BioTab from "./BioTab";
 import LabelsTab from "./LabelsTab";
+import NavBar from "../../global/navbar/NavBar"
 const ArtistShowPage = (props) => {
   let artistID = props.match.params.id;
   const [whichTab, setWhichTab] = useState({ id: "releases" });
@@ -87,6 +88,7 @@ const ArtistShowPage = (props) => {
   return (
     <div>
       <div>
+        <NavBar/>
         <section>
           <div>
             <section className="hero is-dark">
