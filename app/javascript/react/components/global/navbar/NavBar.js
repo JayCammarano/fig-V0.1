@@ -43,16 +43,12 @@ export const NavBar = () => {
             </div>
 
             <div className="navbar-end">
-              <div className="navbar-item ">
-                <Link className="" to="/signup">
+                <Link className="navbar-item " to="/signup">
                   sign up
                 </Link>
-              </div>
-              <div className="navbar-item ">
-                <Link className="is-secondary" to="/login">
+                <Link className="navbar-item" to="/login">
                   sign in
                 </Link>
-              </div>
             </div>
           </div>
         </nav>
