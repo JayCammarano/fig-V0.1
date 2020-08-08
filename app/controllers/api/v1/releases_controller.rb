@@ -29,6 +29,15 @@ class Api::V1::ReleasesController < ApiController
       end
     end
     
+    def update
+      @release = Release.find(params[:id])
+        if @release.update_attributes(release_params)
+          render json: @release
+        else
+          console.log("sometime went wrong")\
+        end
+    end
+    
   private
 
   def release_params

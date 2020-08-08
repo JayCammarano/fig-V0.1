@@ -14,7 +14,6 @@ export const ArtistIndexTile = (props) => {
             />
           </figure>
           <h4 className="card-header-title has-text-dark">{props.name}</h4>
-          <p className="has-text-dark center ml-2 mb-2">{props.description}</p>
         </div>
       </Link>
     </div>
