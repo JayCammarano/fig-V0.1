@@ -25,11 +25,11 @@ const ReleaseCredits = (props) => {
   });
   return (
     <div className="" >
-      <div className="columns is-multiline">
+      <div className="columns is-multiline p-t-lg">
         <p className="has-text-light has-text-weight-bold m-l-xl">Artists:</p>
         {artistListingArray}
         </div>
-        <p className="has-text-light has-text-weight-bold">Labels:</p>
+        <p className="has-text-light has-text-weight-bold m-l-xl">Labels:</p>
         {labelListingArray}
     </div>
   );

@@ -8,8 +8,11 @@ import { Link } from "react-router-dom";
 const ReleaseShowPage = (props) => {
   const artistID = props.match.params.artist_id;
   const releaseID = props.match.params.id;
-
-  const [getRelease, setRelease] = useState({
+  const [whichTab, setWhichTab] = useState({ id: "description" });
+  const changeTabs = (tab) => {
+    setWhichTab({ id: tab });
+  };
+  let defaultRelease = {
     id: "",
     title: "",
     release_type: "",
@@ -18,8 +21,9 @@ const ReleaseShowPage = (props) => {
     relatedArtists: [{ id: "", name: "", description: "", alias: [] }],
     relatedLabels: [{ name: "" }],
     description: "",
-  });
+  };
 
+  const [getRelease, setRelease] = useState(defaultRelease);
   useEffect(() => {
     fetch(`/api/v1/artists/${artistID}/releases/${releaseID}`)
       .then((response) => {
@@ -38,6 +42,21 @@ const ReleaseShowPage = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
+  let musicData;
+  let creditsClass = "";
+  let descriptionClass = "is-active";
+  if (getRelease !== defaultRelease) {
+    if (whichTab.id === "description") {
+      descriptionClass = "is-active";
+      creditsClass = "";
+      musicData = <ReleaseDescription description={getRelease.description} />;
+    } else if (whichTab.id === "credits") {
+      descriptionClass = "";
+      creditsClass = "is-active";
+      musicData = <ReleaseCredits artists={getRelease.relatedArtists} labels={getRelease.relatedLabels}/>
+    
+    }
+  }
 
   return (
     <div>
@@ -50,6 +69,20 @@ const ReleaseShowPage = (props) => {
               </h1>
               <div className="tabs is-4 m-l-md is-boxed is-toggle">
                 <ul>
+                  <li
+                    id="description"
+                    className={descriptionClass}
+                    onClick={() => changeTabs("description")}
+                  >
+                    <a>Description</a>
+                  </li>
+                  <li
+                    id="credits"
+                    onClick={() => changeTabs("credits")}
+                    className={creditsClass}
+                  >
+                    <a>Credits</a>
+                  </li>
                   <li>
                     <Link to={`/artists/${artistID}/releases/${releaseID}`}>
                       Edit Release
@@ -61,12 +94,10 @@ const ReleaseShowPage = (props) => {
           </div>
         </section>
         <div>
-          <SoundCloudEmbed />
-          <ReleaseDescription description={getRelease.description} />
-          <ReleaseCredits
-            artists={getRelease.relatedArtists}
-            labels={getRelease.relatedLabels}
-          />
+          <div className="columns">
+            <SoundCloudEmbed />
+            {musicData}
+          </div>
         </div>
       </div>
     </div>
