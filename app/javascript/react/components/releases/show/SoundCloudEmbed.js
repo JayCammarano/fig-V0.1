@@ -28,7 +28,7 @@ const SoundCloudEmbed = (props) => {
     });
     let oEmbed = iFrame.html
   return (
-  <div className="column is-two-fifths">
+  <div className="column is-two-fifths m-lg">
     <div dangerouslySetInnerHTML={{ __html: oEmbed }}/>
   </div>)
 };

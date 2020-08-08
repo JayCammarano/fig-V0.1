@@ -14,26 +14,24 @@ const ReleaseCredits = (props) => {
   });
   const artistListingArray = props.artists.map((artist) => {
     return (
+      <div className="column is-one-third">
       <ArtistIndexTile
         id={artist.id}
         key={artist.id}
         name={artist.name}
         description={artist.description}
         img={artist.img}
-      />
+      /></div>
     );
   });
   return (
-    <div>
-      <div className="column m-l-lg">
+    <div className="" >
+      <div className="columns is-multiline">
         <p className="has-text-light has-text-weight-bold">Artists:</p>
         {artistListingArray}
-      </div>
-
-      <div className="column m-l-lg">
+        </div>
         <p className="has-text-light has-text-weight-bold">Labels:</p>
         {labelListingArray}
-      </div>
     </div>
   );
 };

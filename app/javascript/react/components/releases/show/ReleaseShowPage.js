@@ -3,6 +3,7 @@ import ReleaseCredits from "./ReleaseCredits";
 import ReleaseDescription from "./ReleaseDescription";
 import ReleaseTags from "./ReleaseTags";
 import SoundCloudEmbed from "./SoundCloudEmbed";
+import { Link } from "react-router-dom";
 
 const ReleaseShowPage = (props) => {
   const artistID = props.match.params.artist_id;
@@ -18,7 +19,6 @@ const ReleaseShowPage = (props) => {
     relatedLabels: [{ name: "" }],
     description: "",
   });
-  const [selectedTab, setSelectedTab] = useState("description");
 
   useEffect(() => {
     fetch(`/api/v1/artists/${artistID}/releases/${releaseID}`)
@@ -39,7 +39,6 @@ const ReleaseShowPage = (props) => {
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
 
-  const activeTab = (tab) => {};
   return (
     <div>
       <div>
@@ -49,12 +48,19 @@ const ReleaseShowPage = (props) => {
               <h1 className="title is-dark pt-4 pl-2 ml-5">
                 {getRelease.title}
               </h1>
-              <div className="column is-4 is-one-half m-l-lg"></div>
+              <div className="tabs is-4 m-l-md is-boxed is-toggle">
+                <ul>
+                  <li>
+                    <Link to={`/artists/${artistID}/releases/${releaseID}`}>
+                      Edit Release
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </section>
           </div>
         </section>
         <div>
-          <SoundCloudEmbed />
           <ReleaseDescription description={getRelease.description} />
           <ReleaseCredits
             artists={getRelease.relatedArtists}
