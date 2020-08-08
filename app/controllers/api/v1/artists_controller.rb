@@ -1,4 +1,5 @@
 class Api::V1::ArtistsController < ApiController
+
   def index    
     render json: Artist.all
   end
@@ -11,6 +12,9 @@ class Api::V1::ArtistsController < ApiController
   end
 
   def create
+    
+    binding.pry
+    
     new_artist = Artist.new(artist_params)
     params[:alias].each do |alt_name|
       name_hash = {alt_name: alt_name}
