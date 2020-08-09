@@ -1,14 +1,20 @@
 class Api::V1::ArtistsController < ApiController
+
   def index    
     render json: Artist.all
   end
 
   def show
+    # // pass in @artist to lastf method call
     @artist = Artist.find(params[:id])
+    lastfmInfo = @artist.lastfmCaller()    
     render json: @artist, serializer: ArtistReleasesSerializer
   end
 
   def create
+    
+    binding.pry
+    
     new_artist = Artist.new(artist_params)
     params[:alias].each do |alt_name|
       name_hash = {alt_name: alt_name}

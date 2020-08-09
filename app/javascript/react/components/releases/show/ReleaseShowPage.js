@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
+import ReleaseCredits from "./ReleaseCredits";
+import ReleaseDescription from "./ReleaseDescription";
+import ReleaseTags from "./ReleaseTags";
+import SoundCloudEmbed from "./SoundCloudEmbed";
 import { Link } from "react-router-dom";
-import LabelTile from "../../labels/LabelTile";
 
 const ReleaseShowPage = (props) => {
   const artistID = props.match.params.artist_id;
   const releaseID = props.match.params.id;
-
-  const [getRelease, setRelease] = useState({
+  const [whichTab, setWhichTab] = useState({ id: "description" });
+  const changeTabs = (tab) => {
+    setWhichTab({ id: tab });
+  };
+  let defaultRelease = {
     id: "",
     title: "",
     release_type: "",
@@ -14,8 +20,11 @@ const ReleaseShowPage = (props) => {
     original_release_year: "",
     relatedArtists: [{ id: "", name: "", description: "", alias: [] }],
     relatedLabels: [{ name: "" }],
-    embed_url
-  });
+    embed_ur: "",
+    description: "",
+  };
+
+  const [getRelease, setRelease] = useState(defaultRelease);
   useEffect(() => {
     fetch(`/api/v1/artists/${artistID}/releases/${releaseID}`)
       .then((response) => {
@@ -35,33 +44,69 @@ const ReleaseShowPage = (props) => {
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
 
-  const labelListingArray = getRelease.relatedLabels.map((label) => {
-    return (
-      <LabelTile
-        key={label.id}
-        name={label.name}
-        description={label.description}
-      />
-    );
-  });
-  return (
-    <div className="columns">
-      <div className="column is-one-third m-lg">
-        <div className="card has-background-light">
-          <p className="title has-text-weight-bold has-text-grey m-sm">
-            {getRelease.title}
-          </p>
-          <figure className="image is-48by48 m-sm">
-            <img src="" className="card-image" alt="Cover Image" />
-          </figure>
-          <p className="pl-4 has-text-dark">{getRelease.description}</p>
+  let musicData;
+  let creditsClass = "";
+  let descriptionClass = "is-active";
+  if (getRelease !== defaultRelease) {
+    if (whichTab.id === "description") {
+      descriptionClass = "is-active";
+      creditsClass = "";
+      musicData = <ReleaseDescription description={getRelease.description} />;
+    } else if (whichTab.id === "credits") {
+      descriptionClass = "";
+      creditsClass = "is-active";
+      musicData = (
+        <ReleaseCredits
+          artists={getRelease.relatedArtists}
+          labels={getRelease.relatedLabels}
+        />
+      );
+    }
+  }
 
-          <p className="center">Associated Tags</p>
+  return (
+    <div>
+      <div>
+        <section>
+          <div>
+            <section className="hero is-dark">
+              <h1 className="title is-dark pt-4 pl-2 ml-5">
+                {getRelease.title}
+              </h1>
+              <div className="tabs is-4 m-l-md is-boxed is-toggle">
+                <ul>
+                  <li
+                    id="description"
+                    className={descriptionClass}
+                    onClick={() => changeTabs("description")}
+                  >
+                    <a>Description</a>
+                  </li>
+                  <li
+                    id="credits"
+                    onClick={() => changeTabs("credits")}
+                    className={creditsClass}
+                  >
+                    <a>Credits</a>
+                  </li>
+                  <li>
+                    <Link
+                      to={`/artists/${artistID}/releases/${releaseID}/update`}
+                    >
+                      Edit Release
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </section>
+        <div>
+          <div className="columns">
+            <SoundCloudEmbed />
+            {musicData}
+          </div>
         </div>
-      </div>
-      <div className="column is-two-fifths m-lg">
-        <p>Embed can go here</p>
-        <div className="center">{labelListingArray}</div>
       </div>
     </div>
   );

@@ -6,12 +6,18 @@ import ReleaseShowPage from "./releases/show/ReleaseShowPage";
 import ArtistNewForm from "./artists/new/ArtistNewForm";
 import ReleaseTile from "./releases/ReleaseTile";
 import ReleaseNewForm from "./releases/new/ReleaseNewForm";
+import Login from "./auth/Login";
+import SignUp from "./auth/SignUp";
+import ReleaseUpdatePage from "./releases/update/ReleaseUpdatePage"
 
 export const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/login" component={Login} />
         <Route exact path="/" component={ArtistIndexContainer} />
+        <Route path="/signup" component={SignUp} />
+
         <Route exact path="/artists" component={ArtistIndexContainer} />
         <Route
           exact
@@ -24,6 +30,11 @@ export const App = (props) => {
           exact
           path="/artists/:artist_id/releases/:id"
           component={ReleaseShowPage}
+        />
+        <Route
+          exact
+          path="/artists/:artist_id/releases/:id/update"
+          component={ReleaseUpdatePage}
         />
       </Switch>
     </BrowserRouter>
