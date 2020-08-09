@@ -13,8 +13,6 @@ class Api::V1::ArtistsController < ApiController
 
   def create
     
-    binding.pry
-    
     new_artist = Artist.new(artist_params)
     params[:alias].each do |alt_name|
       name_hash = {alt_name: alt_name}
@@ -33,6 +31,6 @@ class Api::V1::ArtistsController < ApiController
   private
 
   def artist_params
-    params.require(:artist).permit(:name, :description)
+    params.require(:artist).permit(:name, :description, :image)
   end
 end

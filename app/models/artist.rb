@@ -4,7 +4,8 @@ class Artist < ApplicationRecord
   has_and_belongs_to_many :aliases
   has_many :labels, through: :releases
   has_many :tags, through: :releases
-
+  has_many :images, as: :imageable
+  
   def lastfmCaller()
     name = self.name
     lastfmKey=ENV["LASTFM_API_KEY"]

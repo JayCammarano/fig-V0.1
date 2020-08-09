@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import MultipleArtistFields from "./MultipleArtistFields";
+import ImageUploader from "./ImageUploader";
 
 const ReleaseNewForm = (props) => {
   let artistID = props.match.params.id;
@@ -68,14 +69,21 @@ const ReleaseNewForm = (props) => {
   };
 
   const addNewRelease = (release) => {
+    event.preventDefault();
+    let body = new FormData();
+    body.append("title", releaseRecord.title);
+    body.append("description", releaseRecord.description);
+    body.append("artists", releaseRecord.artists);
+    body.append("release_type", releaseRecord.release_type);
+    body.append("original_release_year", releaseRecord.original_release_year);
+    body.append("embed_url", releaseRecord.embed_url);
+
+    body.append("image", releaseRecord.image);
+
     fetch(`/api/v1/artists/${artistID}/releases`, {
       method: "POST",
+      body: body,
       credentials: "same-origin",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(release),
     })
       .then((response) => {
         if (response.ok) {
@@ -105,6 +113,24 @@ const ReleaseNewForm = (props) => {
       ...releaseRecord,
       artists,
     });
+  };
+
+  const addImage = (event) => {
+    event.preventDefault();
+    let body = new FormData();
+    body.append("name", newDuckFormData.name);
+    body.append("duck_photo", newDuckFormData.image);
+
+    fetch("/api/v1/ducks", {
+      method: "POST",
+      body: body,
+      credentials: "same-origin",
+    })
+      .then((response) => response.json())
+      .then((newDuck) => {
+        setDucks([...ducks, newDuck]);
+      })
+      .catch((error) => console.error(`Error in fetch: ${error.message}`));
   };
 
   return (
@@ -188,8 +214,8 @@ const ReleaseNewForm = (props) => {
                 value={releaseRecord.original_release_year}
               />
             </label>
-
           </div>
+          <ImageUploader setReleaseRecord={setReleaseRecord} releaseRecord={releaseRecord} />
           <div className="column is-4">
             <div className="button-group">
               <input

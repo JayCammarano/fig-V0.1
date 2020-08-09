@@ -3,6 +3,7 @@ class Release < ApplicationRecord
   validates :release_type, presence: true
   validates :original_release_year, presence: true
   validate :artists_presence, on: :create
+  has_many :images, as: :imageable
 
   def artists_presence
    errors.add(:artist, "You must add at least one artist") unless artists.present?
