@@ -47,9 +47,9 @@ const Login = () => {
         .then((headers, status, data) => setresponseJson(headers, status, data))
     );
   };
+  let json = JSON.stringify({"client": responseJson.headers.client, "access-token": responseJson.headers["access-token"], "uid": responseJson.headers.uid,})
   useEffect(() => {
-    localStorage.setItem('auth', {"client": responseJson.headers.client, "access-token": responseJson.headers["access-token"], "uid": responseJson.headers.uid,});
-    debugger
+    localStorage.setItem('auth', json);
   }, [responseJson]);  
   return (
     <div>

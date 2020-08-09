@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../global/navbar/NavBar";
+import { Redirect } from "react-router-dom";
 const SignUp = () => {
   const [signUpForm, setSignUpForm] = useState({
     email: "",
     password: "",
     password_confirmation: "",
   });
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const [value, setValue] = useState(localStorage.getItem("auth") || "");
   const [responseJson, setresponseJson] = useState({
@@ -45,6 +47,7 @@ const SignUp = () => {
           data: data,
         }))
         .then((headers, status, data) => setresponseJson(headers, status, data))
+        .then(setShouldRedirect(true))
     );
   };
   useEffect(() => {
@@ -56,6 +59,9 @@ const SignUp = () => {
     console.log(value.client);
   }, [responseJson]);
 
+  if (shouldRedirect) {
+    return <Redirect to={`/login`} />;
+  }
   return (
     <div>
       <NavBar />
@@ -98,7 +104,11 @@ const SignUp = () => {
             />
           </label>
           <br />
-          <input type="submit" className="button m-l-md" onClick={handleSignUp} />
+          <input
+            type="submit"
+            className="button m-l-md"
+            onClick={handleSignUp}
+          />
         </form>
       </div>
     </div>
