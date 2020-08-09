@@ -20,6 +20,7 @@ const ReleaseShowPage = (props) => {
     original_release_year: "",
     relatedArtists: [{ id: "", name: "", description: "", alias: [] }],
     relatedLabels: [{ name: "" }],
+    embed_ur: "",
     description: "",
   };
 
