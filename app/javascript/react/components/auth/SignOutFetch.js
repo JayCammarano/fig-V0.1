@@ -1,12 +1,16 @@
-import React from 'react'
-
+import React from "react";
+import { Redirect } from "react-router-dom";
 const SignOutFetch = () => {
-  
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  const onSignOut = () => {
+    localStorage.removeItem("auth");
+    <Redirect to="/"/>
+  };
 
-export default SignOutFetch
+  return (
+    <div className="navbar-item" onClick={onSignOut}>
+      sign out
+    </div>
+  );
+};
+
+export default SignOutFetch;

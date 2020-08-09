@@ -1,12 +1,10 @@
-import React from 'react'
+import React from "react";
 
 const SessionCheckFetch = () => {
-  
-  return (
-    <div>
-      
-    </div>
-  )
-}
+    let check = JSON.parse(localStorage.getItem("auth")).client
 
-export default SessionCheckFetch
+  
+  return <div></div>;
+};
+
+export default SessionCheckFetch;
