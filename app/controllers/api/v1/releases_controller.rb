@@ -41,7 +41,7 @@ class Api::V1::ReleasesController < ApiController
   private
 
   def release_params
-    params.require(:release).permit(:title, :description, :original_release_year, :release_type)
+    params.require(:release).permit(:title, :description, :original_release_year, :release_type, :embed_url)
   end
 
 end

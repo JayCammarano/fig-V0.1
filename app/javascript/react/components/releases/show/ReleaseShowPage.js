@@ -20,7 +20,7 @@ const ReleaseShowPage = (props) => {
     original_release_year: "",
     relatedArtists: [{ id: "", name: "", description: "", alias: [] }],
     relatedLabels: [{ name: "" }],
-    embed_ur: "",
+    embed_url: "",
     description: "",
   };
 
@@ -103,7 +103,7 @@ const ReleaseShowPage = (props) => {
         </section>
         <div>
           <div className="columns">
-            <SoundCloudEmbed />
+            <SoundCloudEmbed embed_url={getRelease.embed_url}/>
             {musicData}
           </div>
         </div>
