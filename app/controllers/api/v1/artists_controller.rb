@@ -11,7 +11,6 @@ class Api::V1::ArtistsController < ApiController
   end
 
   def create
-    before_action :authenticate_user!
     
     new_artist = Artist.new(artist_params)
     params[:alias].each do |alt_name|

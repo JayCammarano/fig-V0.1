@@ -11,6 +11,7 @@ const ReleaseNewForm = (props) => {
     artists: [],
     release_type: "Album",
     original_release_year: 2020,
+    embed_url: "",
   });
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [errors, setErrors] = useState("");
@@ -164,6 +165,18 @@ const ReleaseNewForm = (props) => {
               />
             </label>
             <br />
+            <label htmlFor="embed_url">
+              <input
+                type="text"
+                size="50"
+                id="embed_url"
+                name="embed_url"
+                placeholder="Soundcloud URL"
+                onChange={handleInputChange}
+                value={releaseRecord.embed_url}
+              />
+            </label>
+            <br />
             <label htmlFor="original_release_year">
               <input
                 type="text"
@@ -175,6 +188,7 @@ const ReleaseNewForm = (props) => {
                 value={releaseRecord.original_release_year}
               />
             </label>
+
           </div>
           <div className="column is-4">
             <div className="button-group">
