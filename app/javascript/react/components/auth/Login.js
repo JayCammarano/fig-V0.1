@@ -1,35 +1,37 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../global/navbar/NavBar";
 import { Redirect } from "react-router-dom";
-import axios from "axios";
-axios.interceptors.request.use(
-  (config) => {
-    const { origin } = new URL(config.url);
-    const allowedOrigins = [apiUrl];
-    const token = localStorage.getItem("token");
-    if (allowedOrigins.includes(origin)) {
-      config.headers.authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
-const Login = () => {
-  
+const Login = (props) => {
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
-  const apiUrl = "http://localhost:3000";
-  const handleLogin = () => {};
-  const handleInputChange = () => {};
+  
+  async function handleLogin() {
+    try {
+      await props.client.emailSignIn({
+        email: loginForm.email,
+        password: loginForm.password
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  const handleInputChange = (event) => {
+    setLoginForm({
+      ...loginForm,
+      [event.currentTarget.id]: event.currentTarget.value,
+    });
+  };
+
+if(props.isLoggedIn){
+  <Redirect to='/artists'/>
+}
 
   return (
     <div>
-      <NavBar />
+      <NavBar client={props.client} />
       <div>
         <div>
           <h1 className="center title m-t-md m-b-md">Sign In</h1>
