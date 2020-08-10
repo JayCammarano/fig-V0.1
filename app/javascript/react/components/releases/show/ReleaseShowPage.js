@@ -4,7 +4,7 @@ import ReleaseDescription from "./ReleaseDescription";
 import ReleaseTags from "./ReleaseTags";
 import SoundCloudEmbed from "./SoundCloudEmbed";
 import { Link } from "react-router-dom";
-
+import NavBar from "../../global/navbar/NavBar"
 const ReleaseShowPage = (props) => {
   const artistID = props.match.params.artist_id;
   const releaseID = props.match.params.id;
@@ -67,6 +67,7 @@ const ReleaseShowPage = (props) => {
   return (
     <div>
       <div>
+        <NavBar />
         <section>
           <div>
             <section className="hero is-dark">

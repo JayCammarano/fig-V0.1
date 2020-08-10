@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import AliasForm from "./AliasForm";
-
+import NavBar from "../../global/navbar/NavBar"
 const ArtistNewForm = () => {
   const [artistRecord, setArtistRecord] = useState({
     name: "",
@@ -99,6 +99,7 @@ const ArtistNewForm = () => {
 
   return (
     <div>
+    <NavBar />
       <h1 className="title has-text-light center pt-4">Add A New Artist</h1>
 
       <p className="center">
