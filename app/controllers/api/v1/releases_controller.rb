@@ -8,9 +8,14 @@ class Api::V1::ReleasesController < ApiController
 
     def create
 
-      @release = Release.new(release_params)
 
-      image = Image.new(params[:image])
+
+      @release = Release.new(release_params)
+    
+    binding.pry
+    
+      image = Image.new(image_params)
+      binding.pry
       @release.images << image
       params[:artists].each do |artist|
         if artist === ""
@@ -46,6 +51,6 @@ class Api::V1::ReleasesController < ApiController
     params.permit(:title, :description, :original_release_year, :release_type, :embed_url)
   end
   def image_params
-    params.require(:image).permit(:image)
+    params.require(:image)
   end
 end
