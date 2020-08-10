@@ -76,9 +76,8 @@ const ReleaseNewForm = (props) => {
     body.append("release_type", releaseRecord.release_type);
     body.append("original_release_year", releaseRecord.original_release_year);
     body.append("embed_url", releaseRecord.embed_url);
-
     body.append("image", releaseRecord.image);
-
+    debugger
     fetch(`/api/v1/artists/${artistID}/releases`, {
       method: "POST",
       body: body,
@@ -112,24 +111,6 @@ const ReleaseNewForm = (props) => {
       ...releaseRecord,
       artists,
     });
-  };
-
-  const addImage = (event) => {
-    event.preventDefault();
-    let body = new FormData();
-    body.append("name", newDuckFormData.name);
-    body.append("duck_photo", newDuckFormData.image);
-
-    fetch("/api/v1/ducks", {
-      method: "POST",
-      body: body,
-      credentials: "same-origin",
-    })
-      .then((response) => response.json())
-      .then((newDuck) => {
-        setDucks([...ducks, newDuck]);
-      })
-      .catch((error) => console.error(`Error in fetch: ${error.message}`));
   };
 
   return (
