@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import SignOutFetch from "../../auth/SignOutFetch";
 export const NavBar = () => {
   const [isActive, setisActive] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState()
@@ -12,22 +11,22 @@ export const NavBar = () => {
     }
   };
   let loggedIn;
-  let check = JSON.parse(localStorage.getItem("auth"));
+  // let check = JSON.parse(localStorage.getItem("auth"));
 
-  if (check) {
-    loggedIn = <SignOutFetch isLoggedIn={isLoggedIn}/>;
-  } else {
-    loggedIn = (
-      <>
-        <Link className="navbar-item" to="/signup">
-          sign up
-        </Link>
-        <Link className="navbar-item" to="/login">
-          sign in
-        </Link>
-      </>
-    );
-  }
+  // if (check) {
+  //   loggedIn = <SignOutFetch isLoggedIn={isLoggedIn}/>;
+  // } else {
+  //   loggedIn = (
+  //     <>
+  //       <Link className="navbar-item" to="/signup">
+  //         sign up
+  //       </Link>
+  //       <Link className="navbar-item" to="/login">
+  //         sign in
+  //       </Link>
+  //     </>
+  //   );
+  // }
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
