@@ -20,7 +20,7 @@ export const NavBar = (props) => {
   if (isLoggedIn) {
     loggedIn = <SignOut setIsLoggedIn={setIsLoggedIn} client={props.client} />;
     addArtist = (
-      <Link className="navbar-item" to="/tags">
+      <Link className="navbar-item" to="/artists/new">
         add artist
       </Link>
     );

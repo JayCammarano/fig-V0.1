@@ -39,7 +39,6 @@ const ReleaseNewForm = (props) => {
 
       .then((response) => response.json())
       .then((body) => {
-        console.log(body.name);
         setArtistInit(body.name);
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));

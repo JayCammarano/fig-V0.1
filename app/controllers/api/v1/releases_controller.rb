@@ -7,12 +7,13 @@ class Api::V1::ReleasesController < ApiController
     end
 
     def create
-      binding.pry
+
       @release = Release.new(release_params)
-      
+
+      image = Image.new(params[:image])
+      @release.images << image
       params[:artists].each do |artist|
         if artist === ""
-          
         else
           name_hash = {name: artist}
           new_artist = Artist.find_or_initialize_by(name_hash)
@@ -35,14 +36,16 @@ class Api::V1::ReleasesController < ApiController
         if @release.update_attributes(release_params)
           render json: @release
         else
-          console.log("sometime went wrong")\
+          console.log("something went wrong")\
         end
     end
     
   private
 
   def release_params
-    params.require(:release).permit(:title, :description, :original_release_year, :release_type, :embed_url, :image)
+    params.permit(:title, :description, :original_release_year, :release_type, :embed_url)
   end
-
+  def image_params
+    params.require(:image).permit(:image)
+  end
 end
