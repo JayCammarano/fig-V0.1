@@ -1,9 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import SignOutFetch from "../../auth/SignOutFetch";
-export const NavBar = () => {
+import SignOut from "./SignOut";
+import Cookies from "js-cookie";
+
+export const NavBar = (props) => {
   const [isActive, setisActive] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState()
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    Cookies.get("auth.user") !== undefined
+  );
   const triggerActiveBurger = () => {
     if (isActive === false) {
       setisActive(true);
@@ -12,22 +16,27 @@ export const NavBar = () => {
     }
   };
   let loggedIn;
-  let check = JSON.parse(localStorage.getItem("auth"));
-
-  if (check) {
-    loggedIn = <SignOutFetch isLoggedIn={isLoggedIn}/>;
+  let addArtist;
+  if (isLoggedIn) {
+    loggedIn = <SignOut setIsLoggedIn={setIsLoggedIn} client={props.client} />;
+    addArtist = (
+      <Link className="navbar-item" to="/tags">
+        add artist
+      </Link>
+    );
   } else {
     loggedIn = (
       <>
-        <Link className="navbar-item" to="/signup">
-          sign up
-        </Link>
-        <Link className="navbar-item" to="/login">
+        <Link to="/login" className="navbar-item">
           sign in
+        </Link>
+        <Link to="/signup" className="navbar-item">
+          sign up
         </Link>
       </>
     );
   }
+
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
@@ -54,9 +63,7 @@ export const NavBar = () => {
           <Link className="navbar-item" to="/labels">
             labels
           </Link>
-          <Link className="navbar-item" to="/artists/new">
-            add artist
-          </Link>
+          {addArtist}
         </div>
 
         <div className="navbar-end">{loggedIn}</div>

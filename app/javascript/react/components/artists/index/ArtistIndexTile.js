@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const ArtistIndexTile = (props) => {
+  
   return (
     <div className="column is-one-fifth m-l-lg">
       <Link to={`/artists/${props.id}`}>

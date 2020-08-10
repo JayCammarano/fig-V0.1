@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../global/navbar/NavBar";
 import { Redirect } from "react-router-dom";
-const SignUp = () => {
+const SignUp = (props) => {
   const [signUpForm, setSignUpForm] = useState({
     email: "",
     password: "",
@@ -9,12 +9,6 @@ const SignUp = () => {
   });
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
-  const [value, setValue] = useState(localStorage.getItem("auth") || "");
-  const [responseJson, setresponseJson] = useState({
-    headers: {
-      client: "",
-    },
-  });
   const handleInputChange = (event) => {
     setSignUpForm({
       ...signUpForm,
@@ -22,45 +16,23 @@ const SignUp = () => {
     });
   };
 
-  const handleSignUp = (event) => {
+  async function handleSignUp(event) {
     event.preventDefault();
-    fetch(`/auth/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+    try {
+      await props.client.emailSignUp({
         email: signUpForm.email,
         password: signUpForm.password,
-        password_confirmation: signUpForm.password_confirmation,
-      },
-      body: JSON.stringify(signUpForm),
-    }).then((res) =>
-      (res.headers.get("content-type").includes("json")
-        ? res.json()
-        : res.text()
-      )
-        .then((data) => ({
-          headers: [...res.headers].reduce((acc, header) => {
-            return { ...acc, [header[0]]: header[1] };
-          }, {}),
-          status: res.status,
-          data: data,
-        }))
-        .then((headers, status, data) => setresponseJson(headers, status, data))
-        .then(setShouldRedirect(true))
-    );
-  };
-  useEffect(() => {
-    localStorage.setItem("auth", {
-      client: responseJson.headers.client,
-      "access-token": responseJson.headers["access-token"],
-      uid: responseJson.headers.uid,
-    });
-    console.log(value.client);
-  }, [responseJson]);
+        passwordConfirmation: signUpForm.password_confirmation,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+  setShouldRedirect(true)}
+
 
   if (shouldRedirect) {
-    return <Redirect to={`/login`} />;
+    return <Redirect to={`/`} />;
   }
   return (
     <div>
@@ -113,6 +85,6 @@ const SignUp = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SignUp;
