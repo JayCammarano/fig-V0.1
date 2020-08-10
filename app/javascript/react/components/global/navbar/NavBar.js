@@ -54,8 +54,8 @@ export const NavBar = () => {
           <Link className="navbar-item" to="/labels">
             labels
           </Link>
-          <Link className="navbar-item" to="/tags">
-            tags
+          <Link className="navbar-item" to="/artists/new">
+            add artist
           </Link>
         </div>
 
