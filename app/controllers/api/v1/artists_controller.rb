@@ -11,14 +11,9 @@ class Api::V1::ArtistsController < ApiController
   end
 
   def create
-    
-
     new_artist = Artist.new(artist_params)
-    binding.pry
     image = Image.create(attachment: params[:image])
     new_artist.images << image
-    
-    binding.pry
     
     if  params[:alias]
       params[:alias].each do |alt_name|

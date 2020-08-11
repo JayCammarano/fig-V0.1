@@ -62,7 +62,7 @@ const ArtistShowPage = (props) => {
       labelClass = "";
       musicData = (
         <ReleasesTab
-          relatedReleases={getArtist.relatedReleases}
+          releases={getArtist.releaseImageCaller}
           artistID={artistID}
         />
       );
@@ -102,7 +102,7 @@ const ArtistShowPage = (props) => {
                       className={bioClass}
                       onClick={() => changeTabs("bio")}
                     >
-                      <a>Bio</a>
+                      <a>Info</a>
                     </li>
                     <li
                       id="releases"

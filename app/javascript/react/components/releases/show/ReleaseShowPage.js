@@ -57,7 +57,7 @@ const ReleaseShowPage = (props) => {
       creditsClass = "is-active";
       musicData = (
         <ReleaseCredits
-          artists={getRelease.relatedArtists}
+          artists={getRelease.artistImageCaller}
           labels={getRelease.relatedLabels}
         />
       );

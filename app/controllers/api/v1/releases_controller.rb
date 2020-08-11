@@ -16,7 +16,6 @@ class Api::V1::ReleasesController < ApiController
       image = Image.create(attachment: params[:image])
 
       @release.images << image
-      binding.pry
       if params[:artists]
         params[:artists].each do |artist|
           if artist === ""
@@ -49,6 +48,6 @@ class Api::V1::ReleasesController < ApiController
   private
 
   def release_params
-    params.permit(:title, :description, :original_release_year, :release_type, :embed_url, :artists, :image)
+    params.permit(:title, :description, :original_release_year, :release_type, :embed_url, :artists)
   end
 end

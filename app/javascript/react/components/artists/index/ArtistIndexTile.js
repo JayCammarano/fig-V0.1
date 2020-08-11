@@ -9,7 +9,7 @@ export const ArtistIndexTile = (props) => {
         <div className="card has-background-light">
           <figure className="image is-48by48">
             <img
-              src="https://i.imgur.com/mgv7w2I.jpg"
+              src={props.imageCaller}
               className="card-image"
               alt="Artist Image"
             />

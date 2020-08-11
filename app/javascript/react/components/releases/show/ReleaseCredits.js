@@ -19,7 +19,7 @@ const ReleaseCredits = (props) => {
         key={artist.id}
         name={artist.name}
         description={artist.description}
-        img={artist.img}
+        imageCaller={artist.image}
       />
     );
   });

@@ -1,11 +1,4 @@
 class ArtistReleasesSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :relatedReleases, :lastfmCaller
+  attributes :id, :name, :description, :lastfmCaller, :releaseImageCaller
 
-  def relatedReleases
-    object.releases.each do |release|
-        release.title
-        release.description
-        release.labels
-    end
-  end
 end

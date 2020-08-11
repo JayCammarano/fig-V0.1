@@ -11,6 +11,19 @@ class Artist < ApplicationRecord
     image_url = self.images.first.attachment.url
     end
   end
+
+  def releaseImageCaller
+    releases = []
+    self.releases.each do |release|
+      if release.images.first
+      releaseImage = release.images.first.attachment.url
+      end
+      releases << {release_type: release.release_type, year: release.original_release_year, id: release.id, title: release.title, image: releaseImage}
+    end
+    
+    releases
+
+  end
   def lastfmCaller()
     name = self.name
     lastfmKey=ENV["LASTFM_API_KEY"]
