@@ -11,6 +11,9 @@ class Api::V1::ArtistsController < ApiController
   end
 
   def create
+    
+    binding.pry
+    
     new_artist = Artist.new(artist_params)
     image = Image.create(attachment: params[:image])
     new_artist.images << image
