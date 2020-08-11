@@ -5,8 +5,12 @@ class Artist < ApplicationRecord
   has_many :labels, through: :releases
   has_many :tags, through: :releases
   
-  accepts_nested_attributes_for :image
   has_many :images, as: :imageable
+  def imageCaller
+    if self.images.first
+    image_url = self.images.first.attachment.url
+    end
+  end
   def lastfmCaller()
     name = self.name
     lastfmKey=ENV["LASTFM_API_KEY"]

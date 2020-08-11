@@ -12,10 +12,14 @@ class Api::V1::ArtistsController < ApiController
 
   def create
     
-    image = Image.new(attachment: params[:image])
-    
-    
+
     new_artist = Artist.new(artist_params)
+    binding.pry
+    image = Image.create(attachment: params[:image])
+    new_artist.images << image
+    
+    binding.pry
+    
     if  params[:alias]
       params[:alias].each do |alt_name|
         name_hash = {alt_name: alt_name}
@@ -34,6 +38,6 @@ class Api::V1::ArtistsController < ApiController
   private
 
   def artist_params
-    params.permit(:name, :description, :image)
+    params.permit(:name, :description)
   end
 end

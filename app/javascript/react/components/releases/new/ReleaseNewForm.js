@@ -72,12 +72,14 @@ const ReleaseNewForm = (props) => {
     let body = new FormData();
     body.append("title", releaseRecord.title);
     body.append("description", releaseRecord.description);
-    body.append("artists", releaseRecord.artists);
+    releaseRecord.artists.forEach((artist) => {
+      body.append("artists[]", artist);
+    });
     body.append("release_type", releaseRecord.release_type);
     body.append("original_release_year", releaseRecord.original_release_year);
     body.append("embed_url", releaseRecord.embed_url);
     body.append("image", releaseRecord.image);
-    debugger
+
     fetch(`/api/v1/artists/${artistID}/releases`, {
       method: "POST",
       body: body,
@@ -132,7 +134,7 @@ const ReleaseNewForm = (props) => {
                 <option value="Album">Album</option>
                 <option value="EP">EP</option>
                 <option value="Single">Single</option>
-                <option value="Dj Set">EP</option>
+                <option value="Dj Set">DJ Set</option>
                 <option value="Anthology">Anthology</option>
                 <option value="Compilation">Compilation</option>
                 <option value="Mixtape">Mixtape</option>
@@ -195,7 +197,10 @@ const ReleaseNewForm = (props) => {
               />
             </label>
           </div>
-          <ImageUploader setReleaseRecord={setReleaseRecord} releaseRecord={releaseRecord} />
+          <ImageUploader
+            setReleaseRecord={setReleaseRecord}
+            releaseRecord={releaseRecord}
+          />
           <div className="column is-4">
             <div className="button-group">
               <input
