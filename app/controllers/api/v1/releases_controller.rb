@@ -15,7 +15,7 @@ class Api::V1::ReleasesController < ApiController
     
       image = Image.create(attachment: params[:image])
 
-      @release.images << image
+      @release.images.push(image)
       if params[:artists]
         params[:artists].each do |artist|
           if artist === ""
