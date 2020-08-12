@@ -111,13 +111,12 @@ const ArtistShowPage = (props) => {
                     >
                       <a>Releases</a>
                     </li>
-                    <li
-                      id="labels"
-                      className={labelClass}
-                      onClick={() => changeTabs("labels")}
+                    <Link
+                      className=""
+                      to={`/artists/${artistID}/update`}
                     >
-                      <a>Labels</a>
-                    </li>
+                      Edit Info
+                    </Link>
                     <li>
                       <Link to={`/artists/${artistID}/releases/new`}>
                         Add Release
