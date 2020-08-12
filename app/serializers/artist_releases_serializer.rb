@@ -1,5 +1,5 @@
 class ArtistReleasesSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :relatedReleases, :lastfmCaller, :associatedAliases
+  attributes :id, :name, :description, :lastfmCaller, :releaseImageCaller, :associatedAliases
 
   def associatedAliases
     object.aliases.each do |alt_name|

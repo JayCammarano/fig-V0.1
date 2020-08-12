@@ -53,9 +53,11 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'webpacker', '~> 3.3'
+gem 'fog-aws'
 gem "carrierwave"
 gem "bulma-rails", "~> 0.9.0"
 gem 'active_model_serializers', '~> 0.10.0' 
 gem "sprockets"
+gem 'rack-cors'
 gem 'dotenv-rails'
 gem 'httparty'

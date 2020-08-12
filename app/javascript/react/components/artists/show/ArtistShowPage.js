@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ReleasesTab from "./ReleasesTab";
 import BioTab from "./BioTab";
 import LabelsTab from "./LabelsTab";
+import NavBar from "../../global/navbar/NavBar";
 const ArtistShowPage = (props) => {
   let artistID = props.match.params.id;
   const [whichTab, setWhichTab] = useState({ id: "releases" });
@@ -61,7 +62,7 @@ const ArtistShowPage = (props) => {
       labelClass = "";
       musicData = (
         <ReleasesTab
-          relatedReleases={getArtist.relatedReleases}
+          releases={getArtist.releaseImageCaller}
           artistID={artistID}
         />
       );
@@ -85,11 +86,15 @@ const ArtistShowPage = (props) => {
   return (
     <div>
       <div>
+        <NavBar />
         <section>
           <div>
             <section className="hero is-dark">
               <h1 className="title is-dark pt-4 pl-2 ml-5">{getArtist.name}</h1>
-              <div className="column is-4">
+              <div className="column"><a className="pl-4 has-text-light">
+                {getArtist.description}
+              </a></div>
+              <div className="column is-4 is-one-half">
                 <div className="tabs is-4 is-boxed is-toggle">
                   <ul>
                     <li
@@ -97,7 +102,7 @@ const ArtistShowPage = (props) => {
                       className={bioClass}
                       onClick={() => changeTabs("bio")}
                     >
-                      <a>Bio</a>
+                      <a>Info</a>
                     </li>
                     <li
                       id="releases"
@@ -118,8 +123,11 @@ const ArtistShowPage = (props) => {
                       </Link>
                     </li>
                   </ul>
+                  
                 </div>
+                
               </div>
+              
             </section>
             <div id="tabsHere">{musicData}</div>
           </div>
