@@ -79,7 +79,7 @@ const ReleaseNewForm = (props) => {
     body.append("release_type", releaseRecord.release_type);
     body.append("original_release_year", releaseRecord.original_release_year);
     body.append("embed_url", releaseRecord.embed_url);
-    body.append("image", releaseRecord.image);
+    body.append("images", releaseRecord.image);
 
     fetch(`/api/v1/artists/${artistID}/releases`, {
       method: "POST",

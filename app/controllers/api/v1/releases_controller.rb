@@ -10,8 +10,9 @@ wrap_parameters false
     def create
       @release = Release.new(release_params)      
       image = Image.create(attachment: params[:image])
-
-      @release.images << image
+      if image
+      @release.images.push(image)
+      end
       if params[:artists]
         params[:artists].each do |artist|
           if artist === ""
@@ -44,6 +45,6 @@ wrap_parameters false
   private
 
   def release_params
-    params.permit(:title, :description, :original_release_year, :release_type, :embed_url, :artists)
+    params.permit(:title, :description, :original_release_year, :release_type, :embed_url, :artists, :images, :alias, :artist_id)
   end
 end

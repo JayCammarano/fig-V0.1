@@ -46,7 +46,7 @@ const ArtistNewForm = () => {
     artistRecord.alias.forEach((alias) => {
       body.append("alias[]", alias);
     });
-    body.append("image", artistRecord.image);
+    body.append("images", artistRecord.image);
     
     fetch(`/api/v1/artists/`, {
       method: "POST",
