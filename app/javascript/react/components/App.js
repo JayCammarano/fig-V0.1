@@ -4,7 +4,6 @@ import ArtistIndexContainer from "./artists/index/ArtistIndexContainter";
 import ArtistShowPage from "./artists/show/ArtistShowPage";
 import ReleaseShowPage from "./releases/show/ReleaseShowPage";
 import ArtistNewForm from "./artists/new/ArtistNewForm";
-import ReleaseTile from "./releases/ReleaseTile";
 import ReleaseNewForm from "./releases/new/ReleaseNewForm";
 import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
