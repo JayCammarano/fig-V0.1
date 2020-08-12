@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AliasForm from "../new/AliasForm";
 import MultipleAliasFields from "./MultipleAliasFields";
 import { Redirect } from "react-router-dom";
+import ImageUpdater from "./ImageUpdater"
 const ArtistUpdateContainer = (props) => {
   let artistID = props.match.params.id;
   const [artistRecord, setArtistRecord] = useState({
@@ -88,9 +89,9 @@ const ArtistUpdateContainer = (props) => {
       <h1 className="title has-text-light center pt-4">
         Update {artistRecord.name}
       </h1>
-      <section className="container is-6 center">
+      <section className="container center">
         <form onSubmit={onSubmitHandeler}>
-          <div className="column is-4">
+          <div className="column">
             <label htmlFor="name">
               <input
                 type="text"
@@ -103,13 +104,9 @@ const ArtistUpdateContainer = (props) => {
                 value={artistRecord.name}
               />
             </label>
-            <MultipleAliasFields
-              handleAliasChange={handleAliasChange}
-              associatedAliases={artistRecord.associatedAliases}
-            />
           </div>
-          <div className="column is-4"></div>
-          <div className="column is-4">
+          <div className="column"></div>
+          <div className="column">
             <label htmlFor="description">
               <textarea
                 type="text"
@@ -123,7 +120,12 @@ const ArtistUpdateContainer = (props) => {
               />
             </label>
           </div>
-          <div className="column is-4">
+          <ImageUpdater
+            setArtistRecord={setArtistRecord}
+            artistRecord={artistRecord}
+          />
+
+          <div className="column">
             <div className="button-group">
               <input
                 type="submit"
