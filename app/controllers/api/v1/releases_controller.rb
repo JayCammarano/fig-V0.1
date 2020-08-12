@@ -1,4 +1,5 @@
 class Api::V1::ReleasesController < ApiController
+wrap_parameters false
 
     def show
       @artist = Artist.find(params[:artist_id]) 
@@ -7,9 +8,7 @@ class Api::V1::ReleasesController < ApiController
     end
 
     def create
-      @release = Release.new(release_params)
-      binding.pry
-    
+      @release = Release.new(release_params)      
       image = Image.create(attachment: params[:image])
 
       @release.images << image

@@ -70,6 +70,7 @@ const ReleaseNewForm = (props) => {
   const addNewRelease = (release) => {
     event.preventDefault();
     let body = new FormData();
+    
     body.append("title", releaseRecord.title);
     body.append("description", releaseRecord.description);
     releaseRecord.artists.forEach((artist) => {
