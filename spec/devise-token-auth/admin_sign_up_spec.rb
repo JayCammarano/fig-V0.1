@@ -18,7 +18,7 @@ describe 'Whether creation and persistance is ocurring properly', type: :request
     "email" => @current_user.email,
     "password" => @current_user.password,
     "password_confirmation" => @current_user.password_confirmation,
-    "confirm_success_url" => '/artists'}
+    }
     
       post '/auth', :headers => headers
 

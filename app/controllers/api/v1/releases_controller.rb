@@ -7,11 +7,8 @@ class Api::V1::ReleasesController < ApiController
     end
 
     def create
-
-      binding.pry
-
       @release = Release.new(release_params)
-    
+      binding.pry
     
       image = Image.create(attachment: params[:image])
 
