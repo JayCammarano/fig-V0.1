@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import AliasForm from "./AliasForm";
-import NavBar from "../../global/navbar/NavBar"
+import NavBar from "../../global/navbar/NavBar";
+import ImageUploader from "./ImageUploader";
 const ArtistNewForm = () => {
   const [artistRecord, setArtistRecord] = useState({
     name: "",
     description: "",
     alias: [""],
+    image: ""
   });
   const [aliasFields, setAliasFields] = useState(["input"]);
   const [shouldRedirect, setShouldRedirect] = useState(false);
@@ -35,16 +37,20 @@ const ArtistNewForm = () => {
       addNewArtist(artistRecord);
     }
   };
-  
+
   const addNewArtist = (artist) => {
-    fetch(`/api/v1/artists`, {
+    event.preventDefault();
+    let body = new FormData();
+    body.append("name", artistRecord.name);
+    body.append("description", artistRecord.description);
+    artistRecord.alias.forEach((alias) => {
+      body.append("alias[]", alias);
+    });
+    body.append("image", artistRecord.image);
+    
+    fetch(`/api/v1/artists/`, {
       method: "POST",
-      credentials: "same-origin",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(artist),
+      body: body,
     })
       .then((response) => {
         if (response.ok) {
@@ -99,7 +105,7 @@ const ArtistNewForm = () => {
 
   return (
     <div>
-    <NavBar />
+      <NavBar />
       <h1 className="title has-text-light center pt-4">Add A New Artist</h1>
 
       <p className="center">
@@ -144,6 +150,11 @@ const ArtistNewForm = () => {
               />
             </label>
           </div>
+          <ImageUploader
+            setArtistRecord={setArtistRecord}
+            artistRecord={artistRecord}
+          />
+
           <div className="column is-4">
             <div className="button-group">
               <input

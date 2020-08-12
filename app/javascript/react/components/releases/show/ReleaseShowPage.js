@@ -20,7 +20,7 @@ const ReleaseShowPage = (props) => {
     original_release_year: "",
     relatedArtists: [{ id: "", name: "", description: "", alias: [] }],
     relatedLabels: [{ name: "" }],
-    embed_ur: "",
+    embed_url: "",
     description: "",
   };
 
@@ -57,7 +57,7 @@ const ReleaseShowPage = (props) => {
       creditsClass = "is-active";
       musicData = (
         <ReleaseCredits
-          artists={getRelease.relatedArtists}
+          artists={getRelease.artistImageCaller}
           labels={getRelease.relatedLabels}
         />
       );
@@ -104,7 +104,7 @@ const ReleaseShowPage = (props) => {
         </section>
         <div>
           <div className="columns">
-            <SoundCloudEmbed />
+            <SoundCloudEmbed embed_url={getRelease.embed_url}/>
             {musicData}
           </div>
         </div>

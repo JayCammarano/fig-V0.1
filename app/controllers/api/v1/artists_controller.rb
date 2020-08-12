@@ -11,15 +11,18 @@ class Api::V1::ArtistsController < ApiController
   end
 
   def create
-    
     new_artist = Artist.new(artist_params)
-    params[:alias].each do |alt_name|
-      name_hash = {alt_name: alt_name}
-
-      new_alias = Alias.new(name_hash)
-      new_artist.aliases << new_alias
+    image = Image.create(attachment: params[:image])
+    new_artist.images << image
+    
+    if  params[:alias]
+      params[:alias].each do |alt_name|
+        name_hash = {alt_name: alt_name}
+  
+        new_alias = Alias.new(name_hash)
+        new_artist.aliases << new_alias
+      end
     end
-
     if new_artist.save
       render json: new_artist
     else
@@ -30,6 +33,6 @@ class Api::V1::ArtistsController < ApiController
   private
 
   def artist_params
-    params.require(:artist).permit(:name, :description)
+    params.permit(:name, :description)
   end
 end

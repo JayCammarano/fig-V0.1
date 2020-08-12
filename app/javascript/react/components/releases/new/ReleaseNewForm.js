@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import MultipleArtistFields from "./MultipleArtistFields";
+import ImageUploader from "./ImageUploader";
 
 const ReleaseNewForm = (props) => {
   let artistID = props.match.params.id;
@@ -38,7 +39,6 @@ const ReleaseNewForm = (props) => {
 
       .then((response) => response.json())
       .then((body) => {
-        console.log(body.name);
         setArtistInit(body.name);
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
@@ -68,14 +68,22 @@ const ReleaseNewForm = (props) => {
   };
 
   const addNewRelease = (release) => {
+    event.preventDefault();
+    let body = new FormData();
+    body.append("title", releaseRecord.title);
+    body.append("description", releaseRecord.description);
+    releaseRecord.artists.forEach((artist) => {
+      body.append("artists[]", artist);
+    });
+    body.append("release_type", releaseRecord.release_type);
+    body.append("original_release_year", releaseRecord.original_release_year);
+    body.append("embed_url", releaseRecord.embed_url);
+    body.append("image", releaseRecord.image);
+
     fetch(`/api/v1/artists/${artistID}/releases`, {
       method: "POST",
+      body: body,
       credentials: "same-origin",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(release),
     })
       .then((response) => {
         if (response.ok) {
@@ -126,7 +134,7 @@ const ReleaseNewForm = (props) => {
                 <option value="Album">Album</option>
                 <option value="EP">EP</option>
                 <option value="Single">Single</option>
-                <option value="Dj Set">EP</option>
+                <option value="Dj Set">DJ Set</option>
                 <option value="Anthology">Anthology</option>
                 <option value="Compilation">Compilation</option>
                 <option value="Mixtape">Mixtape</option>
@@ -188,8 +196,11 @@ const ReleaseNewForm = (props) => {
                 value={releaseRecord.original_release_year}
               />
             </label>
-
           </div>
+          <ImageUploader
+            setReleaseRecord={setReleaseRecord}
+            releaseRecord={releaseRecord}
+          />
           <div className="column is-4">
             <div className="button-group">
               <input

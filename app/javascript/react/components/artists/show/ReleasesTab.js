@@ -2,7 +2,7 @@ import React from "react";
 import ReleaseTile from "../../releases/ReleaseTile";
 
 export const ReleasesTab = (props) => {
-  const releaseTiles = props.relatedReleases.map((release) => {
+  const releaseTiles = props.releases.map((release) => {
     return (
       <ReleaseTile
         key={release.id}
@@ -13,6 +13,7 @@ export const ReleasesTab = (props) => {
         release_id={release.id}
         label_id={release.label_id}
         artist_id={props.artistID}
+        image={release.image}
       />
     );
   });
