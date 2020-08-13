@@ -124,68 +124,79 @@ const ReleaseNewForm = (props) => {
             <h1 className="title has-text-light center pt-4">
               Add A New Release
             </h1>
-            <label htmlFor="release_type">
-              <select
-                type="text"
-                id="release_type"
-                name="release_type"
-                onChange={handleInputChange}
-                value={releaseRecord.release_type}
-              >
-                <option value="Album">Album</option>
-                <option value="EP">EP</option>
-                <option value="Single">Single</option>
-                <option value="Dj Set">DJ Set</option>
-                <option value="Anthology">Anthology</option>
-                <option value="Compilation">Compilation</option>
-                <option value="Mixtape">Mixtape</option>
-                <option value="Demo">Demo</option>
-                <option value="Concert Recording">Concert Recording</option>
-              </select>
-            </label>
-            <br />
-            <label htmlFor="name">
-              <input
-                type="text"
-                id="title"
-                name="title"
-                size="50"
-                className="is-rounded"
-                placeholder="Release Title (required)"
-                onChange={handleInputChange}
-                value={releaseRecord.title}
-              />
-            </label>
+            <div className="column m-t-lg">
+              <label htmlFor="release_type">
+                <select
+                  type="text"
+                  id="release_type"
+                  name="release_type"
+                  onChange={handleInputChange}
+                  value={releaseRecord.release_type}
+                >
+                  <option value="Album">Album</option>
+                  <option value="EP">EP</option>
+                  <option value="Single">Single</option>
+                  <option value="Dj Set">DJ Set</option>
+                  <option value="Anthology">Anthology</option>
+                  <option value="Compilation">Compilation</option>
+                  <option value="Mixtape">Mixtape</option>
+                  <option value="Demo">Demo</option>
+                  <option value="Concert Recording">Concert Recording</option>
+                </select>
+              </label>
+            </div>
+            <div className="column m-b-md">
+              <label htmlFor="name">
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  size="50"
+                  className="is-rounded"
+                  placeholder="Release Title (required)"
+                  onChange={handleInputChange}
+                  value={releaseRecord.title}
+                />
+              </label>
+            </div>
             <p className="center has-text-warning">{errors}</p>
             <MultipleArtistFields
               handleArtistChange={handleArtistChange}
               releaseRecord={releaseRecord}
             />
 
-            <label htmlFor="description">
-              <input
-                type="text"
-                id="description"
-                size="50"
-                name="description"
-                placeholder="Description"
-                onChange={handleInputChange}
-                value={releaseRecord.description}
-              />
-            </label>
+            <div className="column m-b-md">
+              <label htmlFor="description">
+                <input
+                  type="text"
+                  id="description"
+                  size="50"
+                  name="description"
+
+                  classname="input"
+                  placeholder="Description"
+                  onChange={handleInputChange}
+                  value={releaseRecord.description}
+                />
+              </label>
+            </div>
+            <div className="column m-b-md">
+              <br />
+              <label htmlFor="embed_url">
+                <input
+                  type="text"
+                  size="50"
+                  id="embed_url"
+                  classname="input"
+                  name="embed_url"
+                  placeholder="Soundcloud URL"
+                  onChange={handleInputChange}
+                  value={releaseRecord.embed_url}
+                />
+              </label>
+            </div>
             <br />
-            <label htmlFor="embed_url">
-              <input
-                type="text"
-                size="50"
-                id="embed_url"
-                name="embed_url"
-                placeholder="Soundcloud URL"
-                onChange={handleInputChange}
-                value={releaseRecord.embed_url}
-              />
-            </label>
-            <br />
+            <div className="column m-b-md">
             <label htmlFor="original_release_year">
               <input
                 type="text"
@@ -197,12 +208,13 @@ const ReleaseNewForm = (props) => {
                 value={releaseRecord.original_release_year}
               />
             </label>
+            </div>
           </div>
           <ImageUploader
             setReleaseRecord={setReleaseRecord}
             releaseRecord={releaseRecord}
           />
-          <div className="column is-4">
+          <div className="column">
             <div className="button-group">
               <input
                 type="submit"
