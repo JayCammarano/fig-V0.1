@@ -17,12 +17,11 @@ describe 'Whether creation and persistance is ocurring properly', type: :request
     headers = { "ACCEPT" => "application/json", 
     "email" => @current_user.email,
     "password" => @current_user.password,
-    "password_confirmation" => @current_user.password_confirmation,
-    "confirm_success_url" => '/artists'}
+    "password_confirmation" => @current_user.password}
     
-      post '/auth', :headers => headers
+      post '/admin_auth', :headers => headers
 
-      expect(response.status).to eq("200") 
+      expect(response.status).to eq(200) 
 
     end
   end
