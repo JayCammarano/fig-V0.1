@@ -23,7 +23,6 @@
 #       post '/auth', :headers => headers
 
 #       expect(response.status).to eq("200") 
-
 #     end
 #   end
 # end
