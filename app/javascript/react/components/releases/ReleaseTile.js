@@ -23,9 +23,6 @@ const ReleaseTile = ({
             {title} - {original_release_year}
           </h4>
         </Link>
-        <p className="pl-4 has-text-dark">Short Description</p>
-        <p className="center">Associated Label - Cat Number</p>
-        <p className="center">Associated Tags</p>
       </div>
     </div>
   );

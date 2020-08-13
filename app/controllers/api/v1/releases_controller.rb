@@ -8,11 +8,12 @@ wrap_parameters false
     end
 
     def create
-      @release = Release.new(release_params)      
-      if params[:image]
-        image = Image.create(attachment: params[:image])
-        @release.images.push(image)
-      end
+      @release = Release.new(release_params)
+    
+    
+      image = Image.create(attachment: params[:image])
+
+      @release.images.push(image)
       if params[:artists]
         params[:artists].each do |artist|
           if artist === ""
