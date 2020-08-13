@@ -9,9 +9,9 @@ wrap_parameters false
 
     def create
       @release = Release.new(release_params)      
-      image = Image.create(attachment: params[:image])
-      if image
-      @release.images.push(image)
+      if params[:image]
+        image = Image.create(attachment: params[:image])
+        @release.images.push(image)
       end
       if params[:artists]
         params[:artists].each do |artist|
