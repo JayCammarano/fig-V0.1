@@ -40,7 +40,7 @@ const ArtistIndexContainter = (props) => {
     <div>
       <NavBar client={props.client}/>
       <section className="">
-        <h3 className="title pl-2 ml-5 pt-2">Artists</h3>
+        <h3 className="title has-text-light pl-2 ml-5 pt-2">Artists</h3>
         <div className="columns is-multiline">{artistTiles}</div>
       </section>
     </div>

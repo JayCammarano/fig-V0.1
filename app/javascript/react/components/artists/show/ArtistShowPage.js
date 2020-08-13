@@ -63,7 +63,7 @@ const ArtistShowPage = (props) => {
       musicData = (
         <ReleasesTab
           releases={getArtist.releaseImageCaller}
-          artistID={artistID}
+          artistID={artistID} image={getArtist.imageCaller} name={getArtist.name}
         />
       );
     } else if (whichTab.id === "bio") {
@@ -130,7 +130,7 @@ const ArtistShowPage = (props) => {
               </div>
               
             </section>
-            <div id="tabsHere">{musicData}</div>
+           {musicData}
           </div>
         </section>
       </div>
