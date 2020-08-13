@@ -9,7 +9,7 @@ RSpec.describe Artist, type: :model do
         artist1 = release1.artists.first
         releases = artist1.releaseImageCaller
         
-        expect(releases[0][:image]).to eq(artist1.releases.first.image)
+        expect(releases[0][:images]).to eq(artist1.releases.first.images)
         expect(releases[0][:id]).to eq(artist1.releases.first.id)
         expect(releases[0][:title]).to eq(artist1.releases.first.title)
       end
@@ -29,15 +29,15 @@ RSpec.describe Artist, type: :model do
     end
   end
   
-  # describe "imageCaller" do
-  #   let!(:artist1){FactoryBot.create(:artist)}
+  describe "imageCaller" do
+    let!(:artist1){FactoryBot.create(:artist)}
 
-  #   context "when an artist has an image" do
-  #     it "is can be returned from the images table" do
-  #       imageCaller = artist1.imageCaller
-  #       expect(artist1.images.first).to eq("")
-  #     end
-  #   end
-  # end
+    context "when an artist has an image" do
+      it "is can be returned from the images table" do
+        imageCaller = artist1.imageCaller
+        expect(artist1.images.first).to eq(nil)
+      end
+    end
+  end
   
 end

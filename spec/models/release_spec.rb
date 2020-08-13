@@ -38,10 +38,10 @@ RSpec.describe Release, type: :model do
       it "should return the artist's info and image" do
         returned_hash = release_with_artist.artists.first
 
-        expect(returned.images).to eq(artist1.images.first.attachment)
-        expect(returned.id).to eq(artist1.id)
-        expect(returned.description).to eq(artist1.description)
-        expect(returned.name).to eq(artist1.name)
+        expect(returned_hash.images).to eq(artist1.images.first.attachment)
+        expect(returned_hash.id).to eq(artist1.id)
+        expect(returned_hash.description).to eq(artist1.description)
+        expect(returned_hash.name).to eq(artist1.name)
       end
     end
   end
