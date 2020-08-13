@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import ArtistField from "./ArtistField";
 
 const multipleArtistFields = (props) => {
@@ -20,7 +20,7 @@ const multipleArtistFields = (props) => {
   let artistForms = artistFields.map((inputField) => {
     n = n + 1;
     return (
-      <div>
+      <>
         <ArtistField
           handleArtistChange={props.handleArtistChange}
           artist={props.releaseRecord.artists}
@@ -28,13 +28,14 @@ const multipleArtistFields = (props) => {
           id={n}
           value={props.releaseRecord.artists[`${n}`]}
         />
-      </div>
+        <br/>
+      </>
     );
   });
 
   return (
-    <div>
-      <div>{artistForms}</div>
+    <div className="column m-b-md">
+      {artistForms}
       <p className="is-primary has-text-weight-bold" onClick={addArtistField}>
         + Add Artist
       </p>
