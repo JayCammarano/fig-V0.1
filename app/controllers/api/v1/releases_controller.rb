@@ -7,12 +7,7 @@ class Api::V1::ReleasesController < ApiController
     end
 
     def create
-
-      binding.pry
-
       @release = Release.new(release_params)
-    
-    
       image = Image.create(attachment: params[:image])
 
       @release.images.push(image)
@@ -26,6 +21,7 @@ class Api::V1::ReleasesController < ApiController
           end
         end
       end
+      
       if @release.save      
         @release.artists.each do |artist|
           artist.save 
