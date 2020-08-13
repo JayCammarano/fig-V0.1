@@ -29,8 +29,6 @@ const ReleaseCredits = (props) => {
         <p className="has-text-light has-text-weight-bold m-l-xl">Artists:</p>
         {artistListingArray}
         </div>
-        <p className="has-text-light has-text-weight-bold m-l-xl">Labels:</p>
-        {labelListingArray}
     </div>
   );
 };

@@ -12,8 +12,7 @@ const AliasForm = (props) => {
         type="text"
         id={props.id}
         name="alias"
-
-        className="input"
+        size="50"
         placeholder="Alias"
         onChange={handleChange}
       />
