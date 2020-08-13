@@ -90,12 +90,12 @@ const ArtistShowPage = (props) => {
         <section>
           <div>
             <section className="hero is-dark">
-              <h1 className="title is-dark pt-4 pl-2 ml-5">{getArtist.name}</h1>
-              <div className="column"><a className="pl-4 has-text-light">
+              <h1 className=" title is-size-1 is-dark p-t-lg pl-2 ml-5">{getArtist.name}</h1>
+              <div className="column"><a className="has-text-light pl-2 ml-5">
                 {getArtist.description}
               </a></div>
-              <div className="column is-4 is-one-half">
-                <div className="tabs is-4 is-boxed is-toggle">
+              <div className="column is-one-half">
+                <div className="tabs is-boxed is-toggle pl-2 ml-5">
                   <ul>
                     <li
                       id="bio"

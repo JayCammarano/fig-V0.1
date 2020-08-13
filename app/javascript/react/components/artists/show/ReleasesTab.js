@@ -23,9 +23,8 @@ export const ReleasesTab = (props) => {
       <div>
         <section className="container">
           <div className="columns features is-multiline">
-            {releaseTiles}
-            <div className="column is-one-third m-t-lg">
-              <div className="card has-background-light">
+            <div className="column is-one-third">
+              <div className="card has-background-light  m-t-lg">
                 <p className="has-text-weight-bold has-text-grey m-sm">
                   <b>Add A New Release</b>
                 </p>
@@ -39,11 +38,10 @@ export const ReleasesTab = (props) => {
                 <h4 className="card-header-title has-text-dark">
                   Add A New Release by {props.name}
                 </h4>
-                <p className="pl-4 has-text-dark">Short Description</p>
-                <p className="center">Associated Label - Cat Number</p>
-                <p className="center">Associated Tags</p>
               </div>
             </div>
+            {releaseTiles}
+
           </div>
         </section>
       </div>

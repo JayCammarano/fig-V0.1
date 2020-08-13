@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ArtistIndexTile from "./ArtistIndexTile";
 import NavBar from "../../global/navbar/NavBar";
-
+import { Link } from "react-router-dom";
 const ArtistIndexContainter = (props) => {
   const [getArtists, setArtists] = useState([
     { id: "", name: "", description: "" },
@@ -38,10 +38,22 @@ const ArtistIndexContainter = (props) => {
 
   return (
     <div>
-      <NavBar client={props.client}/>
+      <NavBar client={props.client} />
       <section className="">
         <h3 className="title has-text-light pl-2 ml-5 pt-2">Artists</h3>
-        <div className="columns is-multilines p-l-lg">{artistTiles}</div>
+        <div className="columns is-multilines p-l-lg">
+          <div className="column is-one-fifth">
+            <Link to={`/artists/new`}>
+              <div className="card has-background-light">
+                <figure className="image is-48by48">
+                  <img src="" className="card-image" alt="Artist Image" />
+                </figure>
+                <h4 className="card-header-title has-text-dark">Add a New Artist</h4>
+              </div>
+            </Link>
+          </div>
+          {artistTiles}
+        </div>
       </section>
     </div>
   );
