@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const ArtistIndexTile = (props) => {
   
   return (
-    <div className="column is-one-fifth m-l-lg">
+    <div className="column is-one-fifth">
       <Link to={`/artists/${props.id}`}>
         <div className="card has-background-light">
           <figure className="image is-48by48">
