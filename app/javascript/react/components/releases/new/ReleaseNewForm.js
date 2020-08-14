@@ -152,7 +152,7 @@ const ReleaseNewForm = (props) => {
                   id="title"
                   name="title"
                   size="50"
-                  className="is-rounded"
+                  
                   placeholder="Release Title (required)"
                   onChange={handleInputChange}
                   value={releaseRecord.title}
@@ -172,8 +172,7 @@ const ReleaseNewForm = (props) => {
                   id="description"
                   size="50"
                   name="description"
-
-                  classname="input"
+                  
                   placeholder="Description"
                   onChange={handleInputChange}
                   value={releaseRecord.description}
@@ -187,7 +186,7 @@ const ReleaseNewForm = (props) => {
                   type="text"
                   size="50"
                   id="embed_url"
-                  classname="input"
+                  
                   name="embed_url"
                   placeholder="Soundcloud URL"
                   onChange={handleInputChange}
@@ -204,6 +203,9 @@ const ReleaseNewForm = (props) => {
                 id="original_release_year"
                 name="original_release_year"
                 placeholder="Year"
+                
+                maxlength="4"
+                
                 onChange={handleInputChange}
                 value={releaseRecord.original_release_year}
               />

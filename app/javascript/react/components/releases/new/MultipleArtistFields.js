@@ -26,6 +26,7 @@ const multipleArtistFields = (props) => {
           artist={props.releaseRecord.artists}
           key={n}
           id={n}
+          
           value={props.releaseRecord.artists[`${n}`]}
         />
         <br/>

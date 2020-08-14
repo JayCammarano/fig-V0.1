@@ -28,6 +28,9 @@ class Artist < ApplicationRecord
     lastfmKey=ENV["LASTFM_API_KEY"]
     url= HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=#{name}&api_key=#{lastfmKey}&format=json", format: :plain)
     parsed = JSON.parse url, symbolize_names: true
+    
+    binding.pry
+    
     lastfmHash= { } 
 
     lastfmHash[:similar] = parsed[:artist][:similar]
