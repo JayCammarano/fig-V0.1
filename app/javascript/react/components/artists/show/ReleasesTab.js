@@ -24,7 +24,7 @@ export const ReleasesTab = (props) => {
         <section className="container">
           <div className="columns features is-multiline">
             <div className="column is-one-third m-t-lg">
-              <Link to={`/artists/${props.artistID}/new`}>
+              <Link to={`/artists/${props.artistID}/releases/new`}>
                 <div className="card has-background-light">
                   <p className="has-text-weight-bold has-text-grey m-sm">
                     <b>Add A New Release</b>
