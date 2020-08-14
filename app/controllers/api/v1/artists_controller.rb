@@ -5,17 +5,14 @@ class Api::V1::ArtistsController < ApiController
   end
 
   def show
-    # // pass in @artist to lastf method call
     @artist = Artist.find(params[:id]) 
     render json: @artist, serializer: ArtistReleasesSerializer
   end
 
   def create
-    
     new_artist = Artist.new(artist_params)
     image = Image.create(attachment: params[:image])
     new_artist.images << image
-        
     if  params[:alias]
       params[:alias].each do |alt_name|
         name_hash = {alt_name: alt_name}
@@ -34,9 +31,7 @@ class Api::V1::ArtistsController < ApiController
   def update
     @artist = Artist.find(params[:id])
       if @artist.update_attributes(artist_params)
-        
         render json: @artist, serializer: ArtistReleasesSerializer
-        
       else
         render json: @artist, serializer: ArtistReleasesSerializer
       end
