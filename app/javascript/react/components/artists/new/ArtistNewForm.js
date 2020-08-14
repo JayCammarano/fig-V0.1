@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Redirect } from "react-router-dom";
 import _ from "lodash";
 import AliasForm from "./AliasForm";
@@ -9,7 +9,7 @@ const ArtistNewForm = () => {
     name: "",
     description: "",
     alias: [""],
-    image: ""
+    image: "",
   });
   const [aliasFields, setAliasFields] = useState(["input"]);
   const [shouldRedirect, setShouldRedirect] = useState(false);
@@ -46,8 +46,8 @@ const ArtistNewForm = () => {
     artistRecord.alias.forEach((alias) => {
       body.append("alias[]", alias);
     });
-    if (artistRecord.images != ""){
-    body.append("images", artistRecord.image);
+    if (artistRecord.images != "") {
+      body.append("images", artistRecord.image);
     }
     fetch(`/api/v1/artists/`, {
       method: "POST",
