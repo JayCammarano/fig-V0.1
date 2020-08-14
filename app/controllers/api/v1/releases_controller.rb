@@ -1,5 +1,4 @@
 class Api::V1::ReleasesController < ApiController
-wrap_parameters false
 
     def show
       @artist = Artist.find(params[:artist_id]) 
@@ -8,11 +7,10 @@ wrap_parameters false
     end
 
     def create
-      @release = Release.new(release_params)      
-      if params[:image]
-        image = Image.create(attachment: params[:image])
-        @release.images.push(image)
-      end
+      @release = Release.new(release_params)
+      image = Image.create(attachment: params[:image])
+
+      @release.images.push(image)
       if params[:artists]
         params[:artists].each do |artist|
           if artist === ""
@@ -46,6 +44,6 @@ wrap_parameters false
   private
 
   def release_params
-    params.permit(:title, :description, :original_release_year, :release_type, :embed_url, :artists, :images, :alias, :artist_id)
+    params.permit(:title, :description, :original_release_year, :release_type, :embed_url, :artists)
   end
 end

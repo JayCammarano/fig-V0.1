@@ -6,4 +6,10 @@ FactoryBot.define do
     password { 'password' }
     password_confirmation { 'password' }
   end
+
+  factory :artist do
+    name {'name'}
+    description {'description'}
+
+  end
 end
