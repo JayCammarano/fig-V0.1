@@ -7,7 +7,9 @@ Viewable at :
 https://fig-music.herokuapp.com/
 
 ## Dependencies and Setup
-
+- Rails ~> 5.2.3
+- ruby ~> 2.6.5
+- created with make_it_so gem
 ## Additional Gems and Yarn Packages
 
 Gems:
