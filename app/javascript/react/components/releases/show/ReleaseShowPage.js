@@ -73,7 +73,7 @@ const ReleaseShowPage = (props) => {
       <div>
         <NavBar />
         <section className="hero is-dark">
-          <h1 className="title is-dark pt-4 p-l-lg m-l-lg p-t-sm is-size-1">
+          <h1 className="title is-dark p-t-lg p-l-lg m-l-lg p-t-sm is-size-1">
             {getRelease.title}
           </h1>
           <div className="tabs is-4 pt-4 p-r-lg m-r-lg is-boxed is-toggle is-one-half is-right">
