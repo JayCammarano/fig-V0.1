@@ -11,14 +11,12 @@ const ArtistShowPage = (props) => {
   const [whichTab, setWhichTab] = useState({ id: "releases" });
   const [renderTab, setRenderTab] = useState("");
 
-  const changeTabs = (tab) => {
-    setWhichTab({ id: tab });
-  };
   const defaultArtist = {
     id: "",
     alias: [],
     name: "",
     description: "",
+    imageCaller: "",
     relatedReleases: [
       {
         id: "",
@@ -30,8 +28,13 @@ const ArtistShowPage = (props) => {
         tag_id: "",
       },
     ],
+    
   };
   const [getArtist, setArtist] = useState(defaultArtist);
+  const changeTabs = (tab) => {
+    setWhichTab({ id: tab });
+  };
+
   useEffect(() => {
     fetch(`/api/v1/artists/${artistID}/`)
       .then((response) => {
@@ -63,7 +66,9 @@ const ArtistShowPage = (props) => {
       musicData = (
         <ReleasesTab
           releases={getArtist.releaseImageCaller}
-          artistID={artistID} image={getArtist.imageCaller} name={getArtist.name}
+          artistID={artistID}
+          image={getArtist.imageCaller}
+          name={getArtist.name}
         />
       );
     } else if (whichTab.id === "bio") {
@@ -90,10 +95,14 @@ const ArtistShowPage = (props) => {
         <section>
           <div>
             <section className="hero is-dark">
-              <h1 className=" title is-size-1 is-dark p-t-lg pl-2 ml-5">{getArtist.name}</h1>
-              <div className="column"><a className="has-text-light pl-2 ml-5">
-                {getArtist.description}
-              </a></div>
+              <h1 className=" title is-size-1 is-dark p-t-lg pl-2 ml-5">
+                {getArtist.name}
+              </h1>
+              <div className="column">
+                <a className="has-text-light pl-2 ml-5">
+                  {getArtist.description}
+                </a>
+              </div>
               <div className="column is-one-half">
                 <div className="tabs is-boxed is-toggle pl-2 ml-5">
                   <ul>
@@ -111,10 +120,7 @@ const ArtistShowPage = (props) => {
                     >
                       <a>Releases</a>
                     </li>
-                    <Link
-                      className=""
-                      to={`/artists/${artistID}/update`}
-                    >
+                    <Link className="" to={`/artists/${artistID}/update`}>
                       Edit Info
                     </Link>
                     <li>
@@ -123,13 +129,10 @@ const ArtistShowPage = (props) => {
                       </Link>
                     </li>
                   </ul>
-                  
                 </div>
-                
               </div>
-              
             </section>
-           {musicData}
+            {musicData}
           </div>
         </section>
       </div>

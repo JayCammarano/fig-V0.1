@@ -1,5 +1,6 @@
 import React from "react";
 import ReleaseTile from "../../releases/ReleaseTile";
+import {Link} from "react-router-dom"
 
 export const ReleasesTab = (props) => {
   const releaseTiles = props.releases.map((release) => {
@@ -31,7 +32,7 @@ export const ReleasesTab = (props) => {
                   </p>
                   <figure className="image is-48by48 m-sm">
                     <img
-                      src={props.description.imageCaller}
+                      src={props.image}
                       className="card-image"
                       alt="Cover Image"
                     />
