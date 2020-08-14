@@ -23,6 +23,7 @@ wrap_parameters false
           end
         end
       end
+      
       if @release.save      
         @release.artists.each do |artist|
           artist.save 
