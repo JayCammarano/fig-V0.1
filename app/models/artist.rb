@@ -20,10 +20,9 @@ class Artist < ApplicationRecord
       end
       releases << {release_type: release.release_type, year: release.original_release_year, id: release.id, title: release.title, image: releaseImage}
     end
-    
     releases
-
   end
+
   def lastfmCaller()
     name = self.name
     lastfmKey=ENV["LASTFM_API_KEY"]

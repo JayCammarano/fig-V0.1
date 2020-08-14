@@ -28,9 +28,6 @@ const BioTab = (props) => {
             <h4 className="card-header-title has-text-dark">
               Add A New Release by {props.name}
             </h4>
-            <p className="pl-4 has-text-dark">Short Description</p>
-            <p className="center">Associated Label - Cat Number</p>
-            <p className="center">Associated Tags</p>
           </div>
         </Link>
       </div>
