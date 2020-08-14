@@ -1,6 +1,6 @@
 import React from "react";
 import ReleaseTile from "../../releases/ReleaseTile";
-import { Link } from "react-router-dom";
+
 export const ReleasesTab = (props) => {
   const releaseTiles = props.releases.map((release) => {
     return (
@@ -24,25 +24,24 @@ export const ReleasesTab = (props) => {
         <section className="container">
           <div className="columns features is-multiline">
             <div className="column is-one-third">
-              <Link to={`/artists/${props.artistID}/releases/new`}>
-                <div className="card has-background-light  m-t-lg">
-                  <p className="has-text-weight-bold has-text-grey m-sm">
-                    <b>Add A New Release</b>
-                  </p>
-                  <figure className="image is-48by48 m-sm">
-                    <img
-                      src={props.image}
-                      className="card-image"
-                      alt="Cover Image"
-                    />
-                  </figure>
-                  <h4 className="card-header-title has-text-dark">
-                    Add A New Release by {props.name}
-                  </h4>
-                </div>
-              </Link>
+              <div className="card has-background-light  m-t-lg">
+                <p className="has-text-weight-bold has-text-grey m-sm">
+                  <b>Add A New Release</b>
+                </p>
+                <figure className="image is-48by48 m-sm">
+                  <img
+                    src={props.image}
+                    className="card-image"
+                    alt="Cover Image"
+                  />
+                </figure>
+                <h4 className="card-header-title has-text-dark">
+                  Add A New Release by {props.name}
+                </h4>
+              </div>
             </div>
             {releaseTiles}
+
           </div>
         </section>
       </div>

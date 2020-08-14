@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AliasForm from "../new/AliasForm";
 import MultipleAliasFields from "./MultipleAliasFields";
 import { Redirect } from "react-router-dom";
-import ImageUpdater from "./ImageUpdater";
+import ImageUpdater from "./ImageUpdater"
 const ArtistUpdateContainer = (props) => {
   let artistID = props.match.params.id;
   const [artistRecord, setArtistRecord] = useState({
@@ -120,6 +120,11 @@ const ArtistUpdateContainer = (props) => {
               />
             </label>
           </div>
+          <ImageUpdater
+            setArtistRecord={setArtistRecord}
+            artistRecord={artistRecord}
+          />
+
           <div className="column">
             <div className="button-group">
               <input
