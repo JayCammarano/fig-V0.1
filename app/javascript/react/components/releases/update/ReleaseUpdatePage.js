@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import MultipleArtistsUpdate from "./MultipleArtistsUpdate";
 import { Redirect } from "react-router-dom";
 const ReleaseUpdatePage = (props) => {
-  const artistID = props.match.params.artist_id;
-  const releaseID = props.match.params.id;
+  const artistID = props.artistID
+  const releaseID = props.releaseID
   const defaultRelease = {
     title: "",
     description: "",
@@ -91,9 +91,7 @@ const ReleaseUpdatePage = (props) => {
     releaseRecord={releaseRecord}
   />;
   return (
-    <div className="columns">
-      <section className="container is-6 center">
-        <form onSubmit={onSubmitHandeler}>
+        <form onSubmit={onSubmitHandeler} >
           <div className="column center">
             <h1 className="title has-text-light center pt-4">Update Release</h1>
             <label htmlFor="release_type">
@@ -165,8 +163,6 @@ const ReleaseUpdatePage = (props) => {
             </div>
           </div>
         </form>
-      </section>
-    </div>
   );
 };
 

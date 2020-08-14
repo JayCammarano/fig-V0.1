@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const ArtistIndexTile = (props) => {
   
   return (
-    <div className="column is-one-fifth">
+
       <Link to={`/artists/${props.id}`}>
         <div className="card has-background-light">
           <figure className="image is-48by48">
@@ -17,7 +17,6 @@ export const ArtistIndexTile = (props) => {
           <h4 className="card-header-title has-text-dark">{props.name}</h4>
         </div>
       </Link>
-    </div>
   );
 };
 export default ArtistIndexTile;
