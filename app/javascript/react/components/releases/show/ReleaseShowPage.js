@@ -62,7 +62,9 @@ const ReleaseShowPage = (props) => {
     } else if (whichTab.id === "edit") {
       descriptionClass = "";
       editClass = "is-active";
-      musicData = <ReleaseUpdatePage artistID={artistID} releaseID={releaseID} />;
+      musicData = (
+        <ReleaseUpdatePage artistID={artistID} releaseID={releaseID} />
+      );
     }
   }
 
@@ -83,15 +85,14 @@ const ReleaseShowPage = (props) => {
               >
                 <a>info</a>
               </li>
-              <a>
+
               <li
                 id="edit"
                 className={editClass}
                 onClick={() => changeTabs("edit")}
               >
-                edit release
+                <a>edit release </a>
               </li>
-              </a>
             </ul>
           </div>
         </section>

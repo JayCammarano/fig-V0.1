@@ -92,7 +92,7 @@ const ReleaseUpdatePage = (props) => {
   />;
   return (
         <form onSubmit={onSubmitHandeler} >
-          <div className="column center">
+          <div className="column">
             <h1 className="title has-text-light center pt-4">Update Release</h1>
             <label htmlFor="release_type">
               <select
