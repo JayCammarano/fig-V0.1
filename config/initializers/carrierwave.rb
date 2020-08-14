@@ -1,7 +1,7 @@
 CarrierWave.configure do |config|
-  if Rails.env.test? || Rails.env.cucumber?
+  if Rails.env.test?
     CarrierWave.configure do |config|
-      config.storage = :file
+      config.storage = :fog
       config.enable_processing = false
     end
    

@@ -13,7 +13,7 @@ const BioTab = (props) => {
         </div>
       </div>
       <div className="column is-one-third m-t-lg">
-        <Link to={`/artists/${props.artistID}/new`}>
+        <Link to={`/artists/releases/${props.artistID}/new`}>
           <div className="card has-background-light">
             <p className="has-text-weight-bold has-text-grey m-sm">
               <b>Add A New Release</b>
