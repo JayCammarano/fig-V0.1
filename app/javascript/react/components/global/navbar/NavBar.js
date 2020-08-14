@@ -60,9 +60,6 @@ export const NavBar = (props) => {
           <Link className="navbar-item" to="/artists">
             artists
           </Link>
-          <Link className="navbar-item" to="/labels">
-            labels
-          </Link>
           {addArtist}
         </div>
 
