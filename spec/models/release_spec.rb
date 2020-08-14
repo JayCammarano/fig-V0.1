@@ -32,20 +32,18 @@ RSpec.describe Release, type: :model do
   #   end
   # end
 
-  let!(:release_with_artist) {FactoryBot.create(:release)}
-  describe "artistImageCaller" do
-    context "when called on a release" do
-      it "should return the artist's info and image" do
-        returned_hash = release_with_artist.artists.first
-        
-        binding.pry
-        
-        expect(returned_hash.images).to eq(artist1.images.first.attachment)
-        expect(returned_hash.id).to eq(artist1.id)
-        expect(returned_hash.description).to eq(artist1.description)
-        expect(returned_hash.name).to eq(artist1.name)
-      end
-    end
-  end
+  # let!(:release_with_artist) {FactoryBot.create(:release)}
+  # describe "artistImageCaller" do
+  #   context "when called on a release" do
+  #     it "should return the artist's info and image" do
+  #       returned_hash = release_with_artist.artists.first
+
+  #       expect(returned_hash.images).to eq(artist1.images.first.attachment)
+  #       expect(returned_hash.id).to eq(artist1.id)
+  #       expect(returned_hash.description).to eq(artist1.description)
+  #       expect(returned_hash.name).to eq(artist1.name)
+  #     end
+  #   end
+  # end
   
 end
