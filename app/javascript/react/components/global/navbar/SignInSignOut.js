@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 const SignInSignOut = () => {
   
   return (
-    <div onClick={redirect} className="navbar-item">
+    <div onClick={redirect} className="navbar-item m-l-sm">
     sign out
   </div>
 

@@ -99,7 +99,7 @@ const ArtistShowPage = (props) => {
                 {getArtist.name}
               </h1>
               <div className="column">
-                <a className="has-text-light pl-2 ml-5">
+                <a className="has-text-light is-size-4 pl-2 ml-5">
                   {getArtist.description}
                 </a>
               </div>
