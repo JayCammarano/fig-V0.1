@@ -171,8 +171,6 @@ const ReleaseNewForm = (props) => {
                   id="description"
                   size="50"
                   name="description"
-
-                  classname="input"
                   placeholder="Description"
                   onChange={handleInputChange}
                   value={releaseRecord.description}
@@ -186,7 +184,6 @@ const ReleaseNewForm = (props) => {
                   type="text"
                   size="50"
                   id="embed_url"
-                  classname="input"
                   name="embed_url"
                   placeholder="Soundcloud URL"
                   onChange={handleInputChange}
